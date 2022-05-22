@@ -1,0 +1,16 @@
+package pravila;
+
+import model.Korisnik;
+import model.Knjiga;
+import java.util.ArrayList;
+
+rule "Proba jos jedna"
+salience 10
+    when
+        $korisnik: Korisnik ()
+ 		$x : Object() from accumulate($k: Knjiga(); collectList( $k ) )
+    then
+        System.out.println("Proba uspelaaa");
+        System.out.println("objekat   " + $korisnik);
+        System.out.println("kolekcija   " + $x);
+end

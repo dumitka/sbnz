@@ -1,0 +1,26 @@
+package pravila;
+
+import model.Korisnik;
+import model.Knjiga;
+import java.util.ArrayList;
+
+global Knjiga posmatranaKnjiga;
+
+rule "Filter korisnika kojima se svidja posmatrana knjiga"
+salience 10
+    when
+        $filter: Korisnik ($knjige: lajkovaneKnjige) Number(intValue == 1) from
+     		accumulate (Knjiga (ISBN == "1111") from $knjige, count(1))
+    then
+        System.out.println("USlaaaa");
+        System.out.println("objekat   " + $filter);
+        System.out.println("Posmatrana knjiga   " + posmatranaKnjiga);
+end
+
+rule "Ispis knjige"
+    when
+        $k: Knjiga()
+    then
+        System.out.println("Knjiga pravilo");
+        System.out.println("knjiga   " + $k);
+end
