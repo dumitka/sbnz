@@ -1,0 +1,11 @@
+package pravila;
+
+import model.Knjiga;
+
+rule "Izmeni knjigu"
+    when
+        $k: Knjiga( ISBN == "1111" )
+    then
+        $k.setIzdavackaKuca("Laguna");
+        update($k);
+end
