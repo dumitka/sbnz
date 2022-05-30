@@ -1,0 +1,64 @@
+package pravila;
+
+import model.Korisnik;
+import java.util.List;
+import java.util.Map;
+
+global List<Korisnik> korisnici;
+global Map<String, Double> ucesca;
+global Integer najveciBrojSvidjanja;
+
+rule "Ucesce 0"
+salience 15
+agenda-group "preporuka"
+activation-group "Racunanje ucesca"
+    when
+    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() < najveciBrojSvidjanja * 0.1) from korisnici
+    then
+        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 0");
+        ucesca.put($kIme, 0);
+end
+
+rule "Ucesce 0.25"
+salience 14
+agenda-group "preporuka"
+activation-group "Racunanje ucesca"
+    when
+    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() < najveciBrojSvidjanja * 0.3) from korisnici
+    then
+        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 0.25");
+        ucesca.put($kIme, 0.25);
+end
+
+rule "Ucesce 0.5"
+salience 13
+agenda-group "preporuka"
+activation-group "Racunanje ucesca"
+    when
+    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() < najveciBrojSvidjanja * 0.5) from korisnici
+    then
+        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 0.5");
+        ucesca.put($kIme, 0.5);
+end
+
+rule "Ucesce 0.75"
+salience 12
+agenda-group "preporuka"
+activation-group "Racunanje ucesca"
+    when
+    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() < najveciBrojSvidjanja * 0.7) from korisnici
+    then
+        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 0.75");
+        ucesca.put($kIme, 0.75);
+end
+
+rule "Ucesce 1"
+salience 11
+agenda-group "preporuka"
+activation-group "Racunanje ucesca"
+    when
+    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() >= najveciBrojSvidjanja * 0.7) from korisnici
+    then
+        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 1");
+        ucesca.put($kIme, 1);
+end

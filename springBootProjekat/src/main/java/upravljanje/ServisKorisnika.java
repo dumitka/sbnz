@@ -11,18 +11,20 @@ import model.Korisnik;
 public class ServisKorisnika {
 
 	private final KieContainer kieContainer;
+	private final KieSession kieSession;
 
 	@Autowired
 	public ServisKorisnika(KieContainer kieContainer) {
 		this.kieContainer = kieContainer;
+		this.kieSession = kieContainer.newKieSession();
 	}
 
 	public Korisnik dodajKorisnika(Korisnik k) {
 		System.out.println("*********************************\n" + k + "\n*********************************");
-		KieSession kieSession = kieContainer.newKieSession();
-		kieSession.insert(k);
-		kieSession.fireAllRules();
-		kieSession.dispose();
+		
+		this.kieSession.insert(k);
+		this.kieSession.fireAllRules();
+		//kieSession.dispose();
 		System.out.println("*********************************\n" + k + "\n*********************************");
 		return k;
 	}
