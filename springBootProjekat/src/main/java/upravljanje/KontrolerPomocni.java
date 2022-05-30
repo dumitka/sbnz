@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.Knjiga;
@@ -31,7 +32,6 @@ public class KontrolerPomocni {
 		knjiga.setISBN("1111");
 		knjiga.setNaziv("Naziv");
 		servisKnjiga.dodajKnjigu(knjiga);
-		servisKnjiga.postaviKaoGlobalnu(knjiga);
 		
 //		dodavanjee korisnika1 
 		ArrayList<Knjiga> knjige1 = new ArrayList<>();
@@ -58,9 +58,23 @@ public class KontrolerPomocni {
 	@RequestMapping(value = "/dodajP1_1", method = RequestMethod.GET, produces = "application/json")
 	public ArrayList<Korisnik>  praviloP1DrugiPut() {		
 //		dodavanje svega
-		this.servisAdmin.pokreniSve();
+		this.servisAdmin.preporukaKnjiga();
 		
 		ArrayList<Korisnik> dodati = new ArrayList<>();
 		return dodati;
+	}
+	
+
+	@RequestMapping(value = "/p1", method = RequestMethod.GET, produces = "application/json")
+	public int pravilo1() {
+		int k = servisAdmin.preporukaKnjiga();
+		return k;
+	}
+	
+	@RequestMapping(value = "/pretraga", method = RequestMethod.GET, produces = "application/json")
+	public String pretraga(@RequestParam ("pretraga") String zaPretragu) {
+		System.out.println("Usla saaam !!!");
+		ArrayList<Knjiga> knjige = this.servisAdmin.pretragaKnjiga(zaPretragu);
+		return knjige.toString();
 	}
 }

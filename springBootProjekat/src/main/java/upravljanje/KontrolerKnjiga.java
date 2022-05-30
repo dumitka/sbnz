@@ -27,4 +27,13 @@ public class KontrolerKnjiga {
 		return k;
 	}
 
+	@RequestMapping(value = "/dodajKnjigu2", method = RequestMethod.GET, produces = "application/json")
+	public Knjiga dodavanjeKnjige2() {
+		Knjiga knjiga = new Knjiga();
+		knjiga.setISBN("22");
+		knjiga.setNaziv("Naziv");
+
+		Knjiga k = servisKnjiga.dodajKnjigu(knjiga);
+		return k;
+	}
 }

@@ -1,0 +1,16 @@
+package pravila;
+
+import model.Knjiga;
+import java.util.Map;
+
+global Knjiga posmatranaKnjiga;
+global Map<Knjiga, Double> ocenjeneKnjige;
+
+rule "Izbacivanje trenutne knjige"
+salience 9
+agenda-group "preporuka"
+    when
+    then
+        System.out.println("*** Posmatrana knjiga " + posmatranaKnjiga + " je izbacena");
+        ocenjeneKnjige.remove(posmatranaKnjiga);
+end

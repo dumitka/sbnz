@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 global Knjiga posmatranaKnjiga;
 
-rule "Filter korisnika kojima se svidja posmatrana knjiga"
-salience 10
+rule "Filter korisnika kojima se svidja posmatrana knjiga 1"
+salience 2
     when
         $filter: Korisnik ($knjige: lajkovaneKnjige) Number(intValue == 1) from
      		accumulate (Knjiga (ISBN == "1111") from $knjige, count(1))
@@ -19,8 +19,11 @@ end
 
 rule "Ispis knjige"
     when
-        $k: Knjiga()
+        $x: Object() from accumulate ($k: Knjiga(); collectList( $k ) )
+        $y: Object() from accumulate ($ko: Korisnik(); collectList( $ko ) )
     then
         System.out.println("Knjiga pravilo");
-        System.out.println("knjiga   " + $k);
+        System.out.println("knjiga   " + $x);
+        System.out.println("Posmatrana knjiga   " + posmatranaKnjiga);
+        System.out.println("korisnik   " + $y);
 end

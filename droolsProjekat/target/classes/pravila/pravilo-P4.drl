@@ -1,0 +1,21 @@
+package pravila;
+
+import model.Korisnik;
+import model.Zanr;
+import model.Knjiga;
+import java.util.Map;
+
+global Korisnik ulogovaniKorisnik;
+global Map<Knjiga, Double> ocenjeneKnjige;
+
+rule "Ocenjivanje knjiga zavisno od zanra"
+salience 10
+agenda-group "preporuka"
+    when
+    	$z: Zanr($knjige: knjigeZanra) from ulogovaniKorisnik.lajkovaniZanrovi
+    	$knjiga: Knjiga() from $knjige
+    then
+        System.out.println("*** Knjiga " + $knjiga + " dobija 1 jer je u lajkovanom zanru");
+        double ocena = (double) ocenjeneKnjige.getOrDefault($knjiga, 0.0);
+        ocenjeneKnjige.put($knjiga, ocena + 1);
+end

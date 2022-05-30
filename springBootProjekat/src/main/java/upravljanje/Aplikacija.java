@@ -118,6 +118,15 @@ public class Aplikacija {
 		sveKnjige.add(knjiga5);
 		sviZanrovi.get(2).getKnjigeZanra().add(knjiga5);
 		sviZanrovi.get(4).getKnjigeZanra().add(knjiga5);
+		
+		// knjiga 6
+		ArrayList<String> pisci6 = new ArrayList<>();
+		pisci6.add("Loren Kejt");
+		ArrayList<Zanr> zanrovi6 = new ArrayList<>();
+		zanrovi6.add(sviZanrovi.get(0));
+		Knjiga knjiga6 = new Knjiga("978-86-505-1624-9", "Pad", pisci6, "Evro giunti", zanrovi6, new ArrayList<>());
+		sveKnjige.add(knjiga6);
+		sviZanrovi.get(0).getKnjigeZanra().add(knjiga6);
 	}
 	
 	private static void dodajKorisnike(Admin admin) {
@@ -128,6 +137,7 @@ public class Aplikacija {
 		// korisnik 1
 		ArrayList<Knjiga> knjige1 = new ArrayList<>();
 		knjige1.add(sveKnjige.get(3));
+		knjige1.add(sveKnjige.get(4));
 		ArrayList<Zanr> zanrovi1 = new ArrayList<>();
 		zanrovi1.add(sviZanrovi.get(2));
 		zanrovi1.add(sviZanrovi.get(5));
@@ -137,6 +147,17 @@ public class Aplikacija {
 
 		// korisnik 2
 		sviKorisnici.add(new Korisnik("gd'-'", "misery", "Green", "Day", new ArrayList<>(), new ArrayList<>()));
+		
+
+		// korisnik 3
+		ArrayList<Knjiga> knjige3 = new ArrayList<>();
+		knjige3.add(sveKnjige.get(0));
+		knjige3.add(sveKnjige.get(2));
+		knjige3.add(sveKnjige.get(3));
+		ArrayList<Zanr> zanrovi3 = new ArrayList<>(zanrovi1);
+		Korisnik korisnik3 = new Korisnik("nana123", "NanA", "Natasa", "Nedic", knjige3, zanrovi3);
+		sviKorisnici.add(korisnik3);
+		sveKnjige.get(3).getZainteresovaniKorisnici().add(korisnik3);
 	}
 
 }

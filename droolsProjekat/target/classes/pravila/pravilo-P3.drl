@@ -1,0 +1,23 @@
+package pravila;
+
+import model.Korisnik;
+import model.Knjiga;
+import java.util.List;
+import java.util.Map;
+
+global List<Korisnik> korisnici;
+global Map<String, Double> ucesca;
+global Map<Knjiga, Double> ocenjeneKnjige;
+
+rule "Ocenjivanje knjiga zavisno od korisnika"
+salience 10
+agenda-group "preporuka"
+    when
+    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige) from korisnici
+    	$knjiga: Knjiga() from $knjige
+    then
+    	double udeo = (double) ucesca.get($kIme);
+        System.out.println("*** Korisnik " + $kIme + " daje udeo " + udeo + " za knjigu " + $knjiga);
+        double ocena = (double) ocenjeneKnjige.getOrDefault($knjiga, 0.0);
+        ocenjeneKnjige.put($knjiga, ocena + udeo);
+end

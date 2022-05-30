@@ -21,16 +21,11 @@ public class ServisKnjiga {
 		System.out.println("*********************************\n" + k + "\n*********************************");
 		KieSession kieSession = kieContainer.newKieSession();
 		kieSession.insert(k);
+		kieSession.setGlobal("posmatranaKnjiga", k);
+		System.out.println("---------------\n" + k + "\n---------------");
 		kieSession.fireAllRules();
 		kieSession.dispose();
 		System.out.println("*********************************\n" + k + "\n*********************************");
-		return k;
-	}
-	
-	public Knjiga postaviKaoGlobalnu(Knjiga k) {
-		KieSession kSession = kieContainer.newKieSession();
-		kSession.setGlobal("posmatranaKnjiga", k);
-		System.out.println("---------------\n" + k + "\n---------------");
 		return k;
 	}
 
