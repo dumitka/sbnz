@@ -1,18 +1,26 @@
 package pravila;
 
-import model.Korisnik;
 import model.Knjiga;
-import java.util.Map;
+import java.util.HashSet;
 
-global Korisnik ulogovaniKorisnik;
-global Map<Knjiga, Double> ocenjeneKnjige;
+declare KonacnaOcena
+	knjiga: Knjiga
+	ocena: Double
+end
 
-rule "Izbacivanje vec lajkovanih knjiga"
+rule "Sabiranje glasova za svaku knjigu"
 salience 9
 agenda-group "preporuka"
     when
-    	$k: Knjiga() from ulogovaniKorisnik.lajkovaneKnjige
+    	$lista: List() from accumulate (OcenjenaKnjiga($knjiga: knjiga); collectList( $knjiga ))
+    	$k: Knjiga() from new HashSet($lista)
+    	
+    	accumulate (OcenjenaKnjiga(knjiga == $k, $glas: ocena), $suma: sum($glas))
     then
-        System.out.println("*** Knjiga " + $k + " je izbacena");
-        ocenjeneKnjige.remove($k);
+        System.out.println("*** Knjiga " + $k.getNaziv() + " suma glasova " + $suma);
+        
+        KonacnaOcena zaDodavanje = new KonacnaOcena();
+        zaDodavanje.setKnjiga($k);
+        zaDodavanje.setOcena(1.0);
+        insert(zaDodavanje);
 end

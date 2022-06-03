@@ -1,64 +1,56 @@
 package pravila;
 
-import model.Korisnik;
-import java.util.List;
-import java.util.Map;
-
-global List<Korisnik> korisnici;
-global Map<String, Double> ucesca;
 global Integer najveciBrojSvidjanja;
 
-rule "Ucesce 0"
+rule "Ucesce je 0"
 salience 15
 agenda-group "preporuka"
-activation-group "Racunanje ucesca"
     when
-    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() < najveciBrojSvidjanja * 0.1) from korisnici
+    	$k: UcesceKorisnika($knjige: korisnik.lajkovaneKnjige.size() < 0.1 * najveciBrojSvidjanja)
     then
-        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 0");
-        ucesca.put($kIme, 0);
+        System.out.println("*** Korisnik " + $k.getKorisnik().getKorisnickoIme() + " ima broj svidjanja " + $knjige + " ucesce 0");
+        modify($k) { setUcesce(0.0); }
 end
 
-rule "Ucesce 0.25"
-salience 14
+rule "Ucesce je 0.25"
+salience 15
 agenda-group "preporuka"
-activation-group "Racunanje ucesca"
     when
-    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() < najveciBrojSvidjanja * 0.3) from korisnici
+    	$k: UcesceKorisnika($kIme: korisnik.korisnickoIme, 
+    		$knjige: korisnik.lajkovaneKnjige.size() >= 0.1 * najveciBrojSvidjanja && $knjige < 0.3 * najveciBrojSvidjanja)
     then
-        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 0.25");
-        ucesca.put($kIme, 0.25);
+        System.out.println("*** Korisnik " + $k.getKorisnik().getKorisnickoIme() + " ima broj svidjanja " + $knjige + " ucesce 0.25");
+        modify($k) { setUcesce(0.25); }
 end
 
-rule "Ucesce 0.5"
-salience 13
+rule "Ucesce je 0.5"
+salience 15
 agenda-group "preporuka"
-activation-group "Racunanje ucesca"
     when
-    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() < najveciBrojSvidjanja * 0.5) from korisnici
+    	$k: UcesceKorisnika($kIme: korisnik.korisnickoIme, 
+    		$knjige: korisnik.lajkovaneKnjige.size() >= 0.3 * najveciBrojSvidjanja && $knjige < 0.5 * najveciBrojSvidjanja)
     then
-        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 0.5");
-        ucesca.put($kIme, 0.5);
+        System.out.println("*** Korisnik " + $k.getKorisnik().getKorisnickoIme() + " ima broj svidjanja " + $knjige + " ucesce 0.5");
+        modify($k) { setUcesce(0.5); }
 end
 
-rule "Ucesce 0.75"
-salience 12
+rule "Ucesce je 0.75"
+salience 15
 agenda-group "preporuka"
-activation-group "Racunanje ucesca"
     when
-    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() < najveciBrojSvidjanja * 0.7) from korisnici
+    	$k: UcesceKorisnika($kIme: korisnik.korisnickoIme, 
+    		$knjige: korisnik.lajkovaneKnjige.size() >= 0.5 * najveciBrojSvidjanja && $knjige < 0.7 * najveciBrojSvidjanja)
     then
-        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 0.75");
-        ucesca.put($kIme, 0.75);
+        System.out.println("*** Korisnik " + $k.getKorisnik().getKorisnickoIme() + " ima broj svidjanja " + $knjige + " ucesce 0.75");
+        modify($k) { setUcesce(0.75); }
 end
 
-rule "Ucesce 1"
-salience 11
+rule "Ucesce je 1"
+salience 15
 agenda-group "preporuka"
-activation-group "Racunanje ucesca"
     when
-    	$k: Korisnik($kIme: korisnickoIme, $knjige: lajkovaneKnjige.size() >= najveciBrojSvidjanja * 0.7) from korisnici
+    	$k: UcesceKorisnika($kIme: korisnik.korisnickoIme, $knjige: korisnik.lajkovaneKnjige.size() >= 0.7 * najveciBrojSvidjanja)
     then
-        System.out.println("*** Korisnik " + $kIme + "ima broj svidjanja " + $knjige + " ucesce 1");
-        ucesca.put($kIme, 1);
+        System.out.println("*** Korisnik " + $k.getKorisnik().getKorisnickoIme() + " ima broj svidjanja " + $knjige + " ucesce 1");
+        modify($k) { setUcesce(1.0); }
 end

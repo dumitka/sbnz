@@ -1,6 +1,7 @@
 package upravljanje;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,9 +66,9 @@ public class KontrolerPomocni {
 	}
 	
 
-	@RequestMapping(value = "/p1", method = RequestMethod.GET, produces = "application/json")
-	public int pravilo1() {
-		int k = servisAdmin.preporukaKnjiga();
+	@RequestMapping(value = "/preporuka", method = RequestMethod.GET, produces = "application/json")
+	public HashMap<Knjiga, Double> pravilo1() {
+		HashMap<Knjiga, Double> k = servisAdmin.preporukaKnjiga();
 		return k;
 	}
 	
