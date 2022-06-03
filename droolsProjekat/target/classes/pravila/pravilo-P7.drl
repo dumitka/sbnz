@@ -1,0 +1,13 @@
+package pravila;
+
+global Knjiga posmatranaKnjiga;
+
+rule "Izbacivanje trenutne knjige"
+salience 8
+agenda-group "preporuka"
+    when
+    	$konacnaOcena: KonacnaOcena(knjiga == posmatranaKnjiga)
+    then
+        System.out.println("*** Posmatrana knjiga " + posmatranaKnjiga.getNaziv() + " je izbacena");
+        delete($konacnaOcena);
+end
