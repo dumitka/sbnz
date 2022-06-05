@@ -1,0 +1,23 @@
+package templejti;
+import model.Knjiga;
+import java.util.List;
+global List<Knjiga> pretragaKnjiga;
+
+rule "Pretraga naziv 0"
+agenda-group "pretraga t"
+when
+	$knjiga: Knjiga(Viktorija memberOf naziv && !pretragaKnjiga.contains($knjiga)
+		&& pretragaKnjiga.size() < 3)
+then
+	pretragaKnjiga.add($knjiga);
+end
+rule "Pretraga pisci 0"
+agenda-group "pretraga t"
+when
+	$knjiga: Knjiga($pisci: pisci) Number(intValue >= 1 && !pretragaKnjiga.contains($knjiga)
+		&& pretragaKnjiga.size() < 3) from accumulate ($s: String(Viktorija memberOf $s) from $pisci, count(1))
+then
+	pretragaKnjiga.add($knjiga);
+end
+
+

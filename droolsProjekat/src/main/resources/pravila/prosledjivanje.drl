@@ -1,0 +1,33 @@
+package pravila;
+
+import java.util.HashMap;
+
+global HashMap<Knjiga, Double> ocenjeneKnjige;
+
+rule "ispis ucesca"
+salience 3
+agenda-group "preporuka"
+    when
+    	$k: UcesceKorisnika()
+    then
+        System.out.println("... ucesceee " + $k.getKorisnik().getKorisnickoIme() + " " + $k.getUcesce());
+end
+
+rule "ispis ocena"
+salience 3
+agenda-group "preporuka"
+    when
+    	$k: OcenjenaKnjiga()
+    then
+        System.out.println("... ocenjena knjiga " + $k.getKnjiga().getNaziv() + " " + $k.getOcena());
+end
+
+rule "ispis konacnih ocena"
+salience 3
+agenda-group "preporuka"
+    when
+    	$k: KonacnaOcena()
+    then
+        System.out.println("... konacna ocena " + $k.getKnjiga().getNaziv() + " " + $k.getOcena());
+        ocenjeneKnjige.put($k.getKnjiga(), $k.getOcena());
+end

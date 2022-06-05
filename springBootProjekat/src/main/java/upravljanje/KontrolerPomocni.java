@@ -1,7 +1,18 @@
 package upravljanje;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import org.drools.template.DataProvider;
+import org.drools.template.DataProviderCompiler;
+import org.drools.template.objects.ArrayDataProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,9 +76,9 @@ public class KontrolerPomocni {
 	}
 	
 
-	@RequestMapping(value = "/p1", method = RequestMethod.GET, produces = "application/json")
-	public int pravilo1() {
-		int k = servisAdmin.preporukaKnjiga();
+	@RequestMapping(value = "/preporuka", method = RequestMethod.GET, produces = "application/json")
+	public HashMap<Knjiga, Double> pravilo1() {
+		HashMap<Knjiga, Double> k = servisAdmin.preporukaKnjiga();
 		return k;
 	}
 	
@@ -76,5 +87,33 @@ public class KontrolerPomocni {
 		System.out.println("Usla saaam !!!");
 		ArrayList<Knjiga> knjige = this.servisAdmin.pretragaKnjiga(zaPretragu);
 		return knjige.toString();
+	}
+
+	@RequestMapping(value = "/templejt", method = RequestMethod.GET, produces = "application/json")
+	public void templejt(@RequestParam ("pretraga") String zaPretragu, @RequestParam ("brKnjiga") int brKnjiga) {
+		String putanja = "D:\\sbnz\\sbnz\\droolsProjekat\\src\\main\\resources\\templejti\\";
+		try {
+			//int redniBroj = (new File(putanja)).list().length - 1;
+			
+			InputStream ulazniFajl = new FileInputStream(new File(putanja + "pretraga.drt"));
+			DataProvider podaci = (DataProvider) new ArrayDataProvider(new String[][] {new String[] {zaPretragu, "" + brKnjiga}});
+			DataProviderCompiler kompajler = new DataProviderCompiler();
+			String drl = kompajler.compile(podaci, ulazniFajl);
+			System.out.println("------------------------------------------------\n");
+			System.out.println(drl);
+			System.out.println("------------------------------------------------\n");
+			ulazniFajl.close();
+			
+			//OutputStream izlazniFajl = new FileOutputStream(new File(putanja + "templejt" + redniBroj + ".drl"));
+			OutputStream izlazniFajl = new FileOutputStream(new File(putanja + "templejt.drl"));
+			izlazniFajl.write(drl.getBytes());
+			izlazniFajl.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

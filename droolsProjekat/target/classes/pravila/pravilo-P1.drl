@@ -2,11 +2,13 @@ package pravila;
 
 import model.Korisnik;
 import model.Knjiga;
-import java.util.List;
-import java.util.Collections;
 
 global Knjiga posmatranaKnjiga;
-global List<Korisnik> korisnici;
+
+declare UcesceKorisnika
+	korisnik: Korisnik
+	ucesce: Double
+end
 
 rule "Filter korisnika kojima se svidja posmatrana knjiga"
 salience 16
@@ -15,8 +17,8 @@ agenda-group "preporuka"
     	$k: Korisnik($knjige: lajkovaneKnjige) Number(intValue == 1) from
      		accumulate (Knjiga (ISBN == posmatranaKnjiga.ISBN) from $knjige, count(1))
     then
-        System.out.println("*** Kome se svidja posmatrana knjiga " + $k);
-        korisnici.add($k);
-        //drools.getKnowledgeRuntime().setGlobal("korisnici", korisnici);
-        //drools.getKnowledgeRuntime().getAgenda().getActivationGroup("Racunanje ucesca").clear();
+        System.out.println("*** Kome se svidja posmatrana knjiga " + $k.getKorisnickoIme());
+        UcesceKorisnika zaDodavanje = new UcesceKorisnika();
+        zaDodavanje.setKorisnik($k);
+        insert(zaDodavanje);
 end
