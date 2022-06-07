@@ -10,9 +10,8 @@ rule "Racunanje ko ima najvise svidjanja"
 salience 17
 agenda-group "preporuka"
     when
-        $duzine: List() from accumulate (Korisnik($k: lajkovaneKnjige.size()); collectList( $k ))
+        accumulate (Korisnik($k: lajkovaneKnjige.size()); $naj: max($k))
     then
-        najveciBrojSvidjanja = (int) Collections.max($duzine);
-        System.out.println("*** Najveci broj svidjanja " + najveciBrojSvidjanja);
-        drools.getKnowledgeRuntime().setGlobal("najveciBrojSvidjanja", najveciBrojSvidjanja);
+        System.out.println("*** Najveci broj svidjanja " + $naj);
+        drools.getKnowledgeRuntime().setGlobal("najveciBrojSvidjanja", $naj);
 end

@@ -6,6 +6,7 @@ import java.util.HashSet;
 declare KonacnaOcena
 	knjiga: Knjiga
 	ocena: Double
+	glasovi: List
 end
 
 rule "Sabiranje glasova za svaku knjigu"
@@ -14,13 +15,13 @@ agenda-group "preporuka"
     when
     	$lista: List() from accumulate (OcenjenaKnjiga($knjiga: knjiga); collectList( $knjiga ))
     	$k: Knjiga() from new HashSet($lista)
-    	
-    	accumulate (OcenjenaKnjiga(knjiga == $k, $glas: ocena), $suma: sum($glas))
+    	accumulate (OcenjenaKnjiga(knjiga == $k, $glas: ocena), $l: collectList( $glas ), $suma: sum( $glas ))
     then
-        System.out.println("*** Knjiga " + $k.getNaziv() + " suma glasova " + $suma);
+        System.out.println("*** Knjiga " + $k.getNaziv() + " suma glasova " + $suma + " broj glasova " + $l.size());
         
         KonacnaOcena zaDodavanje = new KonacnaOcena();
         zaDodavanje.setKnjiga($k);
-        zaDodavanje.setOcena(1.0);
+        zaDodavanje.setOcena($suma);
+        zaDodavanje.setGlasovi($l);
         insert(zaDodavanje);
 end
