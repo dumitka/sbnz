@@ -1,32 +1,20 @@
 package upravljanje;
 
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import model.Knjiga;
-
 @Service
 public class ServisKnjiga {
-
-	private final KieContainer kieContainer;
-
+	
 	@Autowired
-	public ServisKnjiga(KieContainer kieContainer) {
-		this.kieContainer = kieContainer;
-	}
+	private RepozitorijumKnjiga repozitorijumKnjiga;
 
-	public Knjiga dodajKnjigu(Knjiga k) {
-		System.out.println("*********************************\n" + k + "\n*********************************");
-		KieSession kieSession = kieContainer.newKieSession();
-		kieSession.insert(k);
-		kieSession.setGlobal("posmatranaKnjiga", k);
-		System.out.println("---------------\n" + k + "\n---------------");
-		kieSession.fireAllRules();
-		kieSession.dispose();
-		System.out.println("*********************************\n" + k + "\n*********************************");
-		return k;
-	}
-
+	public List<Knjiga> nadjiSve() { return  this.repozitorijumKnjiga.findAll(); }
+	
+	public Knjiga sacuvajKnjigu(Knjiga k) { return this.repozitorijumKnjiga.save(k); }
+	
+	public Knjiga nadjiPoISBN(String isbn) { return this.repozitorijumKnjiga.findOneByIsbn(isbn); }
+	
 }

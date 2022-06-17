@@ -1,0 +1,45 @@
+template header
+zaPretragu
+brojKnjiga
+
+package templejti;
+
+import upravljanje.Knjiga;
+import java.util.List;
+
+global List<Knjiga> pretragaKnjiga;
+
+declare BrojPretrage
+	broj: Integer
+end
+
+template "pretraga-knjiga"
+
+rule "Pretraga naziv @{row.rowNumber}"
+agenda-group "templejt"
+when
+	accumulate (BrojPretrage($b: broj), $br: sum($b))
+	$knjiga: Knjiga('@{zaPretragu}' memberOf naziv && !pretragaKnjiga.contains($knjiga)
+		&& $br < @{brojKnjiga})
+then
+	pretragaKnjiga.add($knjiga);
+    BrojPretrage zaDodavanje = new BrojPretrage();
+    zaDodavanje.setBroj(1);
+    insert(zaDodavanje);
+end
+
+
+rule "Pretraga pisci @{row.rowNumber}"
+agenda-group "templejt"
+when
+	accumulate (BrojPretrage($b: broj), $br: sum($b))
+	$knjiga: Knjiga($pisci: new String(pisci)) Number(intValue >= 1 && !pretragaKnjiga.contains($knjiga)
+		&& $br < @{brojKnjiga}) from accumulate ($s: String('@{zaPretragu}' memberOf $s) from $pisci, count(1))
+then
+	pretragaKnjiga.add($knjiga);
+    BrojPretrage zaDodavanje = new BrojPretrage();
+    zaDodavanje.setBroj(1);
+    insert(zaDodavanje);
+end
+
+end template

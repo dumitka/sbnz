@@ -1,8 +1,8 @@
 package pravila;
 
-import model.Korisnik;
-import model.Zanr;
-import model.Knjiga;
+import upravljanje.Korisnik;
+import upravljanje.Zanr;
+import upravljanje.Knjiga;
 
 global Korisnik ulogovaniKorisnik;
 

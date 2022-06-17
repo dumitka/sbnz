@@ -1,6 +1,6 @@
 package pravila;
 
-import model.Knjiga;
+import upravljanje.Knjiga;
 import java.util.List;
 
 global String zaPretragu;
@@ -18,7 +18,7 @@ end
 rule "Pretraga knjiga pisci"
 agenda-group "pretraga"
     when
-    	$knjiga: Knjiga($pisci: pisci) Number(intValue >= 1 && !pretragaKnjiga.contains($knjiga)) from accumulate 
+    	$knjiga: Knjiga($pisci: new String(pisci)) Number(intValue >= 1 && !pretragaKnjiga.contains($knjiga)) from accumulate 
     		($s: String(zaPretragu memberOf $s) from $pisci, count(1))
     then
         System.out.println("... Knjiga " + $knjiga + " je pronadjena");

@@ -1,0 +1,34 @@
+package templejti;
+import upravljanje.Knjiga;
+import java.util.List;
+global List<Knjiga> pretragaKnjiga;
+declare BrojPretrage
+	broj: Integer
+end
+
+rule "Pretraga naziv 0"
+agenda-group "templejt"
+when
+	accumulate (BrojPretrage($b: broj), $br: sum($b))
+	$knjiga: Knjiga('Pa' memberOf naziv && !pretragaKnjiga.contains($knjiga)
+		&& $br < 2)
+then
+	pretragaKnjiga.add($knjiga);
+    BrojPretrage zaDodavanje = new BrojPretrage();
+    zaDodavanje.setBroj(1);
+    insert(zaDodavanje);
+end
+rule "Pretraga pisci 0"
+agenda-group "templejt"
+when
+	accumulate (BrojPretrage($b: broj), $br: sum($b))
+	$knjiga: Knjiga($pisci: new String(pisci)) Number(intValue >= 1 && !pretragaKnjiga.contains($knjiga)
+		&& $br < 2) from accumulate ($s: String('Pa' memberOf $s) from $pisci, count(1))
+then
+	pretragaKnjiga.add($knjiga);
+    BrojPretrage zaDodavanje = new BrojPretrage();
+    zaDodavanje.setBroj(1);
+    insert(zaDodavanje);
+end
+
+
