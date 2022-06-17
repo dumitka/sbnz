@@ -1,6 +1,6 @@
 package pravila;
 
-import model.Korisnik;
+import upravljanje.Korisnik;
 import java.util.List;
 import java.util.Collections;
 

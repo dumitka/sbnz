@@ -80,12 +80,15 @@ public class Aplikacija {
 		Admin admin = Admin.getInstance();
 		
 		admin.setSviKorisnici((ArrayList<Korisnik>) servisKorisnika.nadjiSve());
-		System.out.println(servisKorisnika.nadjiSve().size());
+		for (Korisnik k : admin.getSviKorisnici()) System.out.println(k);
+		System.out.println("---------------------------------------------");
 		admin.setSviZanrovi((ArrayList<Zanr>) servisZanrova.nadjiSve());
-		System.out.println(servisZanrova.nadjiSve().size());
+		for (Zanr k : admin.getSviZanrovi()) System.out.println(k);
+		System.out.println("---------------------------------------------");
 
 		admin.setSveKnjige((ArrayList<Knjiga>) servisKnjiga.nadjiSve());
-		System.out.println(servisKnjiga.nadjiSve().size());
+		for (Knjiga k : admin.getSveKnjige()) System.out.println(k);
+		System.out.println("---------------------------------------------");
 
 //		dodajZanrove(admin.getSviZanrovi());
 //		dodajKnjige(admin);

@@ -1,7 +1,7 @@
 package pravila;
 
-import model.Korisnik;
-import model.Knjiga;
+import upravljanje.Korisnik;
+import upravljanje.Knjiga;
 
 global Knjiga posmatranaKnjiga;
 
@@ -15,7 +15,7 @@ salience 16
 agenda-group "preporuka"
     when
     	$k: Korisnik($knjige: lajkovaneKnjige) Number(intValue == 1) from
-     		accumulate (Knjiga (ISBN == posmatranaKnjiga.ISBN) from $knjige, count(1))
+     		accumulate (Knjiga (isbn == posmatranaKnjiga.isbn) from $knjige, count(1))
     then
         System.out.println("*** Kome se svidja posmatrana knjiga " + $k.getKorisnickoIme());
         UcesceKorisnika zaDodavanje = new UcesceKorisnika();

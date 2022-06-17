@@ -90,7 +90,7 @@ public class KontrolerPomocni {
 
 	@RequestMapping(value = "/templejt", method = RequestMethod.GET, produces = "application/json")
 	public String templejt(@RequestParam ("pretraga") String zaPretragu, @RequestParam ("brKnjiga") int brKnjiga) {
-		String putanja = "D:\\sbnz\\sbnz\\droolsProjekat\\src\\main\\resources\\templejti\\";
+		String putanja = "D:\\sbnz\\sbnz\\droolsProjekat\\src\\main\\resources\\pravila\\";
 		try {
 			//int redniBroj = (new File(putanja)).list().length - 1;
 			

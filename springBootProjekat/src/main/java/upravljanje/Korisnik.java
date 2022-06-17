@@ -2,6 +2,10 @@ package upravljanje;
 
 import java.util.List;
 import javax.persistence.*;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import lombok.*;
 
 @Builder
@@ -34,18 +38,26 @@ public class Korisnik {
 	@JoinColumn(name = "uloga_id")
 	private Uloga uloga;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "korisnici_knjige", joinColumns = @JoinColumn(name = "korisnik_id"), inverseJoinColumns = @JoinColumn(name = "knjiga_id"))
 	private List<Knjiga> lajkovaneKnjige;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "lajkovani_zanrovi", joinColumns = @JoinColumn(name = "korisnik_id"), inverseJoinColumns = @JoinColumn(name = "zanr_id"))
 	private List<Zanr> lajkovaniZanrovi;
 
+
 	@Override
 	public String toString() {
-		return "Korisnik [korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime="
-				+ prezime + "]";
+		StringBuilder sb1 =  new StringBuilder();
+		for (Knjiga k : lajkovaneKnjige) sb1.append(k.getNaziv() + ", ");
+		StringBuilder sb2 =  new StringBuilder();
+		for (Zanr z : lajkovaniZanrovi) sb2.append(z.getNaziv() + ", ");
+		return "Korisnik [korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", ime=" + ime
+				+ ", prezime=" + prezime + ", uloga=" + uloga.getIme() + ", lajkovaneKnjige=[" + sb1.toString()
+				+ "], lajkovaniZanrovi=[" + sb2.toString() + "]]";
 	}
 
 }

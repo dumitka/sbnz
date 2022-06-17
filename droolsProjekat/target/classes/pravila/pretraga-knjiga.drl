@@ -1,26 +1,39 @@
 package pravila;
 
-import model.Knjiga;
+import upravljanje.Knjiga;
 import java.util.List;
 
 global String zaPretragu;
 global List<Knjiga> pretragaKnjiga;
 
+declare BrojPretrage
+	broj: Integer
+end
+
+
 rule "Pretraga knjiga naziv"
 agenda-group "pretraga"
     when
-    	$knjiga: Knjiga(zaPretragu memberOf naziv && !pretragaKnjiga.contains($knjiga))
+    	accumulate (BrojPretrage($b: broj), $br: sum($b))
+    	$knjiga: Knjiga(zaPretragu memberOf naziv && !pretragaKnjiga.contains($knjiga) && $br < 1)
     then
         System.out.println("--- Knjiga " + $knjiga + " je pronadjena");
         pretragaKnjiga.add($knjiga);
+        BrojPretrage zaDodavanje = new BrojPretrage();
+        zaDodavanje.setBroj(1);
+        insert(zaDodavanje);
 end
 
 rule "Pretraga knjiga pisci"
 agenda-group "pretraga"
     when
-    	$knjiga: Knjiga($pisci: pisci) Number(intValue >= 1 && !pretragaKnjiga.contains($knjiga)) from accumulate 
+    	accumulate (BrojPretrage($b: broj), $br: sum($b))
+    	$knjiga: Knjiga($pisci: new String(pisci)) Number(intValue >= 1 && !pretragaKnjiga.contains($knjiga) && $br < 1) from accumulate 
     		($s: String(zaPretragu memberOf $s) from $pisci, count(1))
     then
         System.out.println("... Knjiga " + $knjiga + " je pronadjena");
         pretragaKnjiga.add($knjiga);
+        BrojPretrage zaDodavanje = new BrojPretrage();
+        zaDodavanje.setBroj(1);
+        insert(zaDodavanje);
 end
