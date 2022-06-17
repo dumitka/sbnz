@@ -19,11 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import model.Knjiga;
-import model.Korisnik;
-
 @RestController
 public class KontrolerPomocni {
+    @Autowired
+    private Servis deskService;
 	
 	private final ServisKnjiga servisKnjiga;
 	private final ServisKorisnika servisKorisnika;
@@ -36,34 +35,34 @@ public class KontrolerPomocni {
 		this.servisAdmin = servisAdmin;
 	}
 
-	@RequestMapping(value = "/dodajP1", method = RequestMethod.GET, produces = "application/json")
-	public ArrayList<Korisnik>  praviloP1() {		
-//		dodavanje knjige u sistem
-		Knjiga knjiga = new Knjiga();
-		knjiga.setISBN("1111");
-		knjiga.setNaziv("Naziv");
-		servisKnjiga.dodajKnjigu(knjiga);
-		
-//		dodavanjee korisnika1 
-		ArrayList<Knjiga> knjige1 = new ArrayList<>();
-		knjige1.add(knjiga);
-		Korisnik korisnik = new Korisnik();
-		korisnik.setKorisnickoIme("korisnik1");
-		korisnik.setIme("Imenko");
-		korisnik.setLajkovaneKnjige(knjige1);
-
-//		dodavanje korisnika 2
-		ArrayList<Knjiga> knjige2 = new ArrayList<>();
-		Korisnik korisnik2 = new Korisnik();
-		korisnik2.setKorisnickoIme("korisnik2");
-		korisnik2.setIme("Imenko");
-		korisnik2.setLajkovaneKnjige(knjige2);
-
-		ArrayList<Korisnik> dodati = new ArrayList<>();
-		dodati.add(servisKorisnika.dodajKorisnika(korisnik));
-		dodati.add(servisKorisnika.dodajKorisnika(korisnik2));
-		return dodati;
-	}
+//	@RequestMapping(value = "/dodajP1", method = RequestMethod.GET, produces = "application/json")
+//	public ArrayList<Korisnik>  praviloP1() {		
+////		dodavanje knjige u sistem
+//		Knjiga knjiga = new Knjiga();
+//		knjiga.setISBN("1111");
+//		knjiga.setNaziv("Naziv");
+//		servisKnjiga.dodajKnjigu(knjiga);
+//		
+////		dodavanjee korisnika1 
+//		ArrayList<Knjiga> knjige1 = new ArrayList<>();
+//		knjige1.add(knjiga);
+//		Korisnik korisnik = new Korisnik();
+//		korisnik.setKorisnickoIme("korisnik1");
+//		korisnik.setIme("Imenko");
+//		korisnik.setLajkovaneKnjige(knjige1);
+//
+////		dodavanje korisnika 2
+//		ArrayList<Knjiga> knjige2 = new ArrayList<>();
+//		Korisnik korisnik2 = new Korisnik();
+//		korisnik2.setKorisnickoIme("korisnik2");
+//		korisnik2.setIme("Imenko");
+//		korisnik2.setLajkovaneKnjige(knjige2);
+//
+//		ArrayList<Korisnik> dodati = new ArrayList<>();
+//		dodati.add(servisKorisnika.dodajKorisnika(korisnik));
+//		dodati.add(servisKorisnika.dodajKorisnika(korisnik2));
+//		return dodati;
+//	}
 	
 
 	@RequestMapping(value = "/dodajP1_1", method = RequestMethod.GET, produces = "application/json")
@@ -90,7 +89,7 @@ public class KontrolerPomocni {
 	}
 
 	@RequestMapping(value = "/templejt", method = RequestMethod.GET, produces = "application/json")
-	public void templejt(@RequestParam ("pretraga") String zaPretragu, @RequestParam ("brKnjiga") int brKnjiga) {
+	public String templejt(@RequestParam ("pretraga") String zaPretragu, @RequestParam ("brKnjiga") int brKnjiga) {
 		String putanja = "D:\\sbnz\\sbnz\\droolsProjekat\\src\\main\\resources\\templejti\\";
 		try {
 			//int redniBroj = (new File(putanja)).list().length - 1;
@@ -108,6 +107,9 @@ public class KontrolerPomocni {
 			OutputStream izlazniFajl = new FileOutputStream(new File(putanja + "templejt.drl"));
 			izlazniFajl.write(drl.getBytes());
 			izlazniFajl.close();
+			
+			ArrayList<Knjiga> knjige = this.servisAdmin.pretragaTemplejt();
+			return knjige.toString();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,5 +117,6 @@ public class KontrolerPomocni {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return "";
 	}
 }

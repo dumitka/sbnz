@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import model.Admin;
-import model.Knjiga;
-import model.Korisnik;
-import model.Zanr;
 
 @Service
 public class ServisAdmin {
@@ -31,8 +28,8 @@ public class ServisAdmin {
 		//kieSession.getAgenda().getActivationGroup("Racunanje ucesca").clear();
 		// globalne
 		kieSession.setGlobal("posmatranaKnjiga", pomstranaKnjiga);
-		//kieSession.setGlobal("korisnici", new ArrayList<>());
-		//kieSession.setGlobal("ucesca", new HashMap<>());
+//		//kieSession.setGlobal("korisnici", new ArrayList<>());
+//		//kieSession.setGlobal("ucesca", new HashMap<>());
 		kieSession.setGlobal("ocenjeneKnjige", new HashMap<>());
 		kieSession.setGlobal("ulogovaniKorisnik", ulogovaniKorisnik);
 		// inserti
@@ -56,7 +53,7 @@ public class ServisAdmin {
 	}
 	
 	public HashMap<Knjiga, Double> preporukaKnjiga() {
-		KieSession kieSession = pokreniSve(admin.getSveKnjige().get(3), admin.getSviKorisnici().get(0));
+		KieSession kieSession = pokreniSve(admin.getSveKnjige().get(3), admin.getSviKorisnici().get(1));
 		kieSession.getAgenda().getAgendaGroup("preporuka").setFocus();
 		kieSession.fireAllRules();
 		HashMap<Knjiga, Double> mapa = (HashMap<Knjiga, Double>) kieSession.getGlobal("ocenjeneKnjige");
@@ -73,4 +70,16 @@ public class ServisAdmin {
 		return knjige;
 	}
 
+	public ArrayList<Knjiga> pretragaTemplejt() {
+		KieSession kieSession = kieContainer.newKieSession();
+		// globalne
+		kieSession.setGlobal("pretragaKnjiga", new ArrayList<Knjiga>());
+		// inserti
+		for (Knjiga k : admin.getSveKnjige()) kieSession.insert(k);
+		kieSession.getAgenda().getAgendaGroup("pretragaTemplejt").setFocus();
+		kieSession.fireAllRules();
+		ArrayList<Knjiga> knjige = (ArrayList<Knjiga>) kieSession.getGlobal("pretragaKnjiga");
+		kieSession.dispose();
+		return knjige;
+	}
 }

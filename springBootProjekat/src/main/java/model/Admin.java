@@ -2,6 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+import upravljanje.Knjiga;
+import upravljanje.Korisnik;
+import upravljanje.Zanr;
+
 public class Admin {
 	
 	private static Admin instanca;
