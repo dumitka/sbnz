@@ -32,10 +32,10 @@ public class Aplikacija {
 	private static ServisZanrova servisZanrova;
 	
 	@Autowired
-	public Aplikacija(ServisKnjiga servisKnjiga, ServisZanrova sz, ServisKorisnika sk) {
-		this.servisKnjiga = servisKnjiga;
-		this.servisKorisnika =  sk;
-		this.servisZanrova = sz;
+	public Aplikacija(ServisKnjiga sknj, ServisZanrova sz, ServisKorisnika sk) {
+		servisKnjiga = sknj;
+		servisKorisnika =  sk;
+		servisZanrova = sz;
 	}
 	
 	public static void main(String[] args) {
@@ -80,15 +80,8 @@ public class Aplikacija {
 		Admin admin = Admin.getInstance();
 		
 		admin.setSviKorisnici((ArrayList<Korisnik>) servisKorisnika.nadjiSve());
-		for (Korisnik k : admin.getSviKorisnici()) System.out.println(k);
-		System.out.println("---------------------------------------------");
 		admin.setSviZanrovi((ArrayList<Zanr>) servisZanrova.nadjiSve());
-		for (Zanr k : admin.getSviZanrovi()) System.out.println(k);
-		System.out.println("---------------------------------------------");
-
 		admin.setSveKnjige((ArrayList<Knjiga>) servisKnjiga.nadjiSve());
-		for (Knjiga k : admin.getSveKnjige()) System.out.println(k);
-		System.out.println("---------------------------------------------");
 
 //		dodajZanrove(admin.getSviZanrovi());
 //		dodajKnjige(admin);

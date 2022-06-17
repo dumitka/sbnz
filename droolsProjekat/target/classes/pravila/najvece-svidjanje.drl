@@ -1,8 +1,6 @@
 package pravila;
 
 import upravljanje.Korisnik;
-import java.util.List;
-import java.util.Collections;
 
 global Integer najveciBrojSvidjanja;
 

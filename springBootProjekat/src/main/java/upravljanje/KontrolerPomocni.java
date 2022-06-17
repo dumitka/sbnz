@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class KontrolerPomocni {
-    @Autowired
-    private Servis deskService;
 	
 	private final ServisKnjiga servisKnjiga;
 	private final ServisKorisnika servisKorisnika;

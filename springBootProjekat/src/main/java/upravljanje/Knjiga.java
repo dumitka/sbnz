@@ -1,7 +1,5 @@
 package upravljanje;
 
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 import javax.persistence.*;
 
@@ -53,7 +51,7 @@ public class Knjiga {
 		for (Korisnik k : getZainteresovaniKorisnici()) sb2.append(k.getKorisnickoIme() + ", ");
 		String pis = new String(pisci);
 		return "Knjiga [isbn=" + isbn + ", naziv=" + naziv + ", pisci=" + pis
-				+ ", izdavackaKuca=" + izdavackaKuca + ", zanrovi=" + sb1.toString() + ", zainteresovaniKorisnici=["
+				+ ", izdavackaKuca=" + izdavackaKuca + ", zanrovi=[" + sb1.toString() + "], zainteresovaniKorisnici=["
 				+ sb2.toString() + "]]";
 	}
 

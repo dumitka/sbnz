@@ -28,14 +28,13 @@ public class ServisAdmin {
 		//kieSession.getAgenda().getActivationGroup("Racunanje ucesca").clear();
 		// globalne
 		kieSession.setGlobal("posmatranaKnjiga", pomstranaKnjiga);
-		//kieSession.setGlobal("korisnici", new ArrayList<>());
-		//kieSession.setGlobal("ucesca", new HashMap<>());
+		kieSession.setGlobal("pretragaKnjiga", new ArrayList<>());
 		kieSession.setGlobal("ocenjeneKnjige", new HashMap<>());
 		kieSession.setGlobal("ulogovaniKorisnik", ulogovaniKorisnik);
 		// inserti
 		for (Zanr z : admin.getSviZanrovi()) kieSession.insert(z);
 		for (Knjiga k : admin.getSveKnjige()) kieSession.insert(k);
-		for (Korisnik k : admin.getSviKorisnici()) kieSession.insert(k);
+		for (Korisnik k : admin.getSviKorisnici()) if (k.getId() != 1) kieSession.insert(k);
 		System.out.println("..........................................................");
 		return kieSession;
 	}
@@ -53,7 +52,7 @@ public class ServisAdmin {
 	}
 	
 	public HashMap<Knjiga, Double> preporukaKnjiga() {
-		KieSession kieSession = pokreniSve(admin.getSveKnjige().get(3), admin.getSviKorisnici().get(0));
+		KieSession kieSession = pokreniSve(admin.getSveKnjige().get(1), admin.getSviKorisnici().get(6));
 		kieSession.getAgenda().getAgendaGroup("preporuka").setFocus();
 		kieSession.fireAllRules();
 		HashMap<Knjiga, Double> mapa = (HashMap<Knjiga, Double>) kieSession.getGlobal("ocenjeneKnjige");
