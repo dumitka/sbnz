@@ -97,27 +97,27 @@ insert into zanrovi_knjiga (zanr_id, knjiga_id) values (2, 22);
 insert into zanrovi_knjiga (zanr_id, knjiga_id) values (8, 22);
 	
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('dumit', 'dumit', 'Milica', 'Đumić', 1);
+	('dumit', '$2a$10$w0vKHY.n57PaPTariMuUXu3Am3a/gzaXZhpCy5PBZpEMkYaTzOI/i', 'Milica', 'Đumić', 1);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('ana123', 'svecaneBeleKosulje', 'Anica', 'Dobra', 2);
+	('ana123', '$2a$10$TbJq/5.fCwynQR7KCkYopentW1k3/5KszetmN48G3nts7mKvmtAPm', 'Anica', 'Dobra', 2);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('greenDay', 'misery', 'Makro', 'Savić', 2);
+	('greenDay', '$2a$10$6qfUpUae5.hYWnom52Gza.7CZpItoedrQI4DFYS0z6E.4Xy3kQQHu', 'Makro', 'Savić', 2);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('nana2', 'NanA', 'Nataša', 'Nedić', 2);
+	('nana2', '$2a$10$xFqFlo59WM6nJdRu/B5dpuwSNRDbk0M4.Da71bIYy69wesfLOci.G', 'Nataša', 'Nedić', 2);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('maja12', 'maja12', 'Maja', 'Malić', 2);
+	('maja12', '$2a$10$/gvIg6xLF.nSaSDki1jwUO/qGqqMHXkjvWybxhdCcGXE2iohQEoUu', 'Maja', 'Malić', 2);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('ceca', 'ceca', 'Svetlana', 'Radić', 2);
+	('ceca', '$2a$10$.epSv5E1GkGEu91HE6tRw.iN5DGTG2hnXYFdQCmnZBhyU7AeK.sxO', 'Svetlana', 'Radić', 2);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('nindza', 'nindza', 'Nikola', 'Perić', 2);
+	('nindza', '$2a$10$SfCnynAvooicxqqdFqeHpu/XgKBu.XyZAgxSksgVotuOBBbyPkqh2', 'Nikola', 'Perić', 2);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('srbo', 'srbo', 'Srđan', 'Babić', 2);
+	('srbo', '$2a$10$iTcx73Matf2hwTkZut7yKuucW71ozdeMkP9eByICHwkVr1N10N3N.', 'Srđan', 'Babić', 2);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('lela', 'lela', 'Laura', 'Tomić', 2);
+	('lela', '$2a$10$0s6al8KKIxHIKnrrbTRHV.4RYb05MqxJkG6GxLTqZYBuD8QJZf8/q', 'Laura', 'Tomić', 2);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('krle', 'krle', 'Konstantin', 'Kršić', 2);
+	('krle', '$2a$10$ez3HKShxQvdfP5mW0lgY0.a2LBxvP4uUFxllRTxq3MLHarvZDjaly', 'Konstantin', 'Kršić', 2);
 insert into korisnici (korisnicko_ime, lozinka, ime, prezime, uloga_id) values
-	('mile', 'mile', 'Milorad', 'Grbić', 2);
+	('mile', '$2a$10$tdMSJVnKST4bUfWXODEky.ntE7ZQIyn4P7JLAhroJ3ErOft.4n3bW', 'Milorad', 'Grbić', 2);
 
 insert into korisnici_knjige (korisnik_id, knjiga_id) values (2, 4);
 insert into korisnici_knjige (korisnik_id, knjiga_id) values (2, 5);

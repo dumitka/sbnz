@@ -1,8 +1,11 @@
 package upravljanje;
 
 import javax.persistence.*;
-//import org.springframework.security.core.GrantedAuthority;
+
+import org.springframework.security.core.GrantedAuthority;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 
 @Builder
@@ -13,8 +16,7 @@ import lombok.*;
 @EqualsAndHashCode
 @Entity
 @Table(name = "uloge")
-//public class Uloga implements GrantedAuthority { 
-public class Uloga { 
+public class Uloga implements GrantedAuthority { 
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,9 +27,9 @@ public class Uloga {
     @Column(name = "ime", unique = true, nullable = false)
     String ime;
 
-//    @JsonIgnore
-//	@Override
-//	public String getAuthority() {
-//		return this.ime;
-//	}
+    @JsonIgnore
+	@Override
+	public String getAuthority() {
+		return this.ime;
+	}
 }
