@@ -40,7 +40,7 @@ export class LogovanjeComponent implements OnInit {
         data => {
           this.openSnackBar("Uspešno ste ulogovani. Dobrodošli! :) " + this.loginService.getTokenData()?.role, this.RESPONSE_OK);
           if (this.loginService.getTokenData()?.role === "ADMIN") {
-            this.router.navigate(['/Profil']);
+            this.router.navigate(['/ProfilAdmin']);
           } else if (this.loginService.getTokenData()?.role === "KORISNIK") {
             this.router.navigate(['/Profil']);
           }

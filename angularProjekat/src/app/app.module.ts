@@ -12,13 +12,18 @@ import { ProfilComponent } from './profil/profil.component';
 import { TokenInterceptor } from './logovanje/TokenInterceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginService } from './logovanje/login.service';
-
+import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
+import { Admin } from './uloge/Admin';
+import { Korisnik } from './uloge/Korisnik';
+import { IzmenaPodatakaComponent } from './izmena-podataka/izmena-podataka.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogovanjeComponent,
-    ProfilComponent
+    ProfilComponent,
+    ProfilAdminComponent,
+    IzmenaPodatakaComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +40,18 @@ import { LoginService } from './logovanje/login.service';
       { path: 'login', component: LogovanjeComponent },
       {
         path: 'Profil',
-        canActivate: [],
+        canActivate: [Korisnik],
         component: ProfilComponent,
+      },
+      {
+        path: 'ProfilAdmin',
+        canActivate: [Admin],
+        component: ProfilAdminComponent,
+      },
+      {
+        path: 'IzmenaPodataka',
+        canActivate: [],
+        component: IzmenaPodatakaComponent,
       },
     ]),
 
