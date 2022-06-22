@@ -18,6 +18,9 @@ import { Korisnik } from './uloge/Korisnik';
 import { IzmenaPodatakaComponent } from './izmena-podataka/izmena-podataka.component';
 import { DodavanjeKorisnikaComponent } from './dodavanje-korisnika/dodavanje-korisnika.component';
 import { DodajKnjiguComponent } from './dodaj-knjigu/dodaj-knjigu.component';
+import { DijalogPretragaComponent } from './dijalog-pretraga/dijalog-pretraga.component';
+import { DijalogNapredaPretragaComponent } from './dijalog-napreda-pretraga/dijalog-napreda-pretraga.component';
+import { DijalogOdabirComponent } from './dijalog-odabir/dijalog-odabir.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { DodajKnjiguComponent } from './dodaj-knjigu/dodaj-knjigu.component';
     ProfilAdminComponent,
     IzmenaPodatakaComponent,
     DodavanjeKorisnikaComponent,
-    DodajKnjiguComponent
+    DodajKnjiguComponent,
+    DijalogPretragaComponent,
+    DijalogNapredaPretragaComponent,
+    DijalogOdabirComponent
   ],
   imports: [
     BrowserModule,
