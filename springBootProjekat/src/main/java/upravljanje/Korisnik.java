@@ -1,7 +1,6 @@
 package upravljanje;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,6 +28,11 @@ import lombok.Setter;
 @Table(name = "korisnici")
 public class Korisnik implements UserDetails {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

@@ -14,4 +14,6 @@ public class ServisUloga {
 	 public Uloga findById(Integer id) { return this.repozitorijumUloga.getOne(id); }
 	
 	 public List<Uloga> nadjiPoImenu(String name) { return this.repozitorijumUloga.findByIme(name); }
+
+	 public Uloga nadjiJednuPoImenu(String name) { return this.repozitorijumUloga.findOneByIme(name); }
 }

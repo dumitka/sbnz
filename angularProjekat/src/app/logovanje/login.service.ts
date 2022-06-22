@@ -34,7 +34,7 @@ export class LoginService {
     window.localStorage.setItem('userId', "null");
     window.localStorage.setItem('username', "null");
     window.localStorage.setItem('role', "null");
-    this.router.navigate(['/login'], { state: { data: { 'username': username } } });
+    this.router.navigate(['/Login'], { state: { data: { 'username': username } } });
   }
  
   tokenIsPresent() {

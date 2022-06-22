@@ -16,6 +16,8 @@ import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
 import { Admin } from './uloge/Admin';
 import { Korisnik } from './uloge/Korisnik';
 import { IzmenaPodatakaComponent } from './izmena-podataka/izmena-podataka.component';
+import { DodavanjeKorisnikaComponent } from './dodavanje-korisnika/dodavanje-korisnika.component';
+import { DodajKnjiguComponent } from './dodaj-knjigu/dodaj-knjigu.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { IzmenaPodatakaComponent } from './izmena-podataka/izmena-podataka.compo
     LogovanjeComponent,
     ProfilComponent,
     ProfilAdminComponent,
-    IzmenaPodatakaComponent
+    IzmenaPodatakaComponent,
+    DodavanjeKorisnikaComponent,
+    DodajKnjiguComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +40,8 @@ import { IzmenaPodatakaComponent } from './izmena-podataka/izmena-podataka.compo
 
     
     RouterModule.forRoot([
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LogovanjeComponent },
+      { path: '', redirectTo: 'Login', pathMatch: 'full' },
+      { path: 'Login', component: LogovanjeComponent },
       {
         path: 'Profil',
         canActivate: [Korisnik],
@@ -52,6 +56,16 @@ import { IzmenaPodatakaComponent } from './izmena-podataka/izmena-podataka.compo
         path: 'IzmenaPodataka',
         canActivate: [],
         component: IzmenaPodatakaComponent,
+      },
+      {
+        path: 'DodajKorisnika',
+        canActivate: [Admin],
+        component: DodavanjeKorisnikaComponent,
+      },
+      {
+        path: 'DodajKnjigu',
+        canActivate: [Admin],
+        component: DodajKnjiguComponent,
       },
     ]),
 

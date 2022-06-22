@@ -34,13 +34,12 @@ export class IzmenaPodatakaComponent implements OnInit {
   }
 
   sacuvaj() {
-    alert(this.loginForm.getRawValue().ime);
     this.korisnik.ime = this.loginForm.getRawValue().ime;
     this.korisnik.prezime = this.loginForm.getRawValue().prezime;
     this.korisniciServis.setInfo(this.korisnik)
       .subscribe((data:any) => {
         this.openSnackBar("Uspešno ste izmenili podatke :)");
-        if (data.id == 1) this.ruter.navigate(['/ProfilAdmin']);
+        if (data.korisnikoIme == "dumit") this.ruter.navigate(['/ProfilAdmin']);
         else this.ruter.navigate(['/Profil']);
       });
   }

@@ -6,11 +6,9 @@
   
     <div class="card_div">
       <mat-card class="server_profile_card">
-        <img mat-card-lg-image name="profile_picture" class="profile_picture" src="../../assets/profil.png" >
-          
           <mat-card-content>
             <div class="server_data">
-              <span>{{korisnik?.korisnickoIme}}</span>
+              <span>Dodavanje korisnika</span>
             </div>
 
             <mat-card-content>
@@ -30,13 +28,29 @@
                             <mat-error *ngIf="hasError('prezime', 'required')">Potrebno je uneti prezime!</mat-error>
                             <mat-icon matSuffix>person_outline</mat-icon>
                         </mat-form-field>
+                        <br>
+                        <br>
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="korIme">KORISNIČKO IME</mat-label>
+                            <input type="text" class="form-control" formControlName="korIme" id="korIme" matInput>
+                            <mat-error *ngIf="hasError('korIme', 'required')">Potrebno je uneti prezime!</mat-error>
+                            <mat-icon matSuffix>person_outline</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <br>
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="loz">LOZINKA</mat-label>
+                            <input type="password" class="form-control" formControlName="loz" id="loz" matInput>
+                            <mat-error *ngIf="hasError('loz', 'required')">Potrebno je uneti prezime!</mat-error>
+                            <mat-icon matSuffix>lock_open</mat-icon>
+                        </mat-form-field>
                     </form>
                 </div>
             </mat-card-content>
           </mat-card-content>
   
           <mat-card-actions>
-            <button mat-button (click) = "sacuvaj()" [disabled]="loginForm.invalid">SAČUVAJ</button>
+            <button mat-button (click) = "dodaj()" [disabled]="loginForm.invalid">DODAJ</button>
           </mat-card-actions>
       </mat-card>
     </div>

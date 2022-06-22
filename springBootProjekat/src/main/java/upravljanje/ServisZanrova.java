@@ -15,4 +15,6 @@ public class ServisZanrova {
 	
 	public Zanr nadjiPoNazivu(String naziv) { return this.repozitorijumZanrova.findOneByNaziv(naziv); }
 	
+	public Zanr sacuvajZanr(Zanr z) { return this.repozitorijumZanrova.save(z); }
+	
 }

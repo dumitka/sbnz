@@ -59,7 +59,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers("/logovanje/podaci").permitAll() //svi imaju pristup logovanju
 				.antMatchers("/").permitAll()
 				.antMatchers("/sbnz-stomp-endpoint/**").permitAll()
-//				.antMatchers("/cook/get").hasAuthority("ROLE_COOK")
+				.antMatchers("/korisnici/**").permitAll()
+//				.antMatchers("/korisnici/dodaj").hasAuthority("ADMIN")
 //				.antMatchers("/chef/get").hasAuthority("ROLE_CHEF")
 			.anyRequest().authenticated().and()
 			.cors().and()
