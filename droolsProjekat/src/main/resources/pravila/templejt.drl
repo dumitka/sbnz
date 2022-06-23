@@ -10,8 +10,8 @@ rule "Pretraga naziv 0"
 agenda-group "templejt"
 when
 	accumulate (BrojPretrage($b: broj), $br: sum($b))
-	$knjiga: Knjiga('Pa' memberOf naziv && !pretragaKnjiga.contains($knjiga)
-		&& $br < 2)
+	$knjiga: Knjiga('Vik' memberOf naziv && !pretragaKnjiga.contains($knjiga)
+		&& $br < 5)
 then
 	pretragaKnjiga.add($knjiga);
     BrojPretrage zaDodavanje = new BrojPretrage();
@@ -23,7 +23,7 @@ agenda-group "templejt"
 when
 	accumulate (BrojPretrage($b: broj), $br: sum($b))
 	$knjiga: Knjiga($pisci: new String(pisci)) Number(intValue >= 1 && !pretragaKnjiga.contains($knjiga)
-		&& $br < 2) from accumulate ($s: String('Pa' memberOf $s) from $pisci, count(1))
+		&& $br < 5) from accumulate ($s: String('Vik' memberOf $s) from $pisci, count(1))
 then
 	pretragaKnjiga.add($knjiga);
     BrojPretrage zaDodavanje = new BrojPretrage();

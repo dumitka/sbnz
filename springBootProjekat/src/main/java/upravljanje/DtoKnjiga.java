@@ -1,6 +1,6 @@
 package upravljanje;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +18,7 @@ public class DtoKnjiga {
 	private String isbn;
 	private String naziv;
 	private String izdavackaKuca;
-	private ArrayList<String> pisci;
-	private ArrayList<String> zanrovi;
+	private List<String> pisci;
+	private List<String> zanrovi;
 
 }

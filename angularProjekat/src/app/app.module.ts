@@ -21,6 +21,7 @@ import { DodajKnjiguComponent } from './dodaj-knjigu/dodaj-knjigu.component';
 import { DijalogPretragaComponent } from './dijalog-pretraga/dijalog-pretraga.component';
 import { DijalogNapredaPretragaComponent } from './dijalog-napreda-pretraga/dijalog-napreda-pretraga.component';
 import { DijalogOdabirComponent } from './dijalog-odabir/dijalog-odabir.component';
+import { PretragaComponent } from './pretraga/pretraga.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DijalogOdabirComponent } from './dijalog-odabir/dijalog-odabir.componen
     DodajKnjiguComponent,
     DijalogPretragaComponent,
     DijalogNapredaPretragaComponent,
-    DijalogOdabirComponent
+    DijalogOdabirComponent,
+    PretragaComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,11 @@ import { DijalogOdabirComponent } from './dijalog-odabir/dijalog-odabir.componen
         path: 'DodajKnjigu',
         canActivate: [Admin],
         component: DodajKnjiguComponent,
+      },
+      {
+        path: 'Pretraga',
+        canActivate: [Korisnik],
+        component: PretragaComponent,
       },
     ]),
 

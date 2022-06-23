@@ -34,8 +34,7 @@ export class ProfilComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // obicna pretraga
-        this.ruter.navigate(["/Pretraga"]);
+        this.ruter.navigate(["/Pretraga"], {state: {vrsta: 1, podaci: result}});    // vrsta == 1 obicna pretraga
       }
     });
   }
@@ -45,12 +44,10 @@ export class ProfilComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        //alert("novaa pretraga");
-        this.ruter.navigate(["/NaprednaPretraga"]);
+        this.ruter.navigate(["/Pretraga"], {state: {vrsta: 2, podaci: result}});    // vrsta == 2 generisi templejt
         return;
       }
-      //alert("izvrsi staru pretragu");
-      this.ruter.navigate(["/NaprednaPretraga"]);
+      this.ruter.navigate(["/Pretraga"], {state: {vrsta: 3, podaci: null}});    // vrsta == 3 stara pretraga
     }
     );
   }
