@@ -16,7 +16,7 @@ export class DijalogPretragaComponent implements OnInit {
     });
   }
 
-  public requiredError = (errorName: string) =>{
+  public postojiGreska = (errorName: string) =>{
     return this.pretraga.controls['tekst'].hasError(errorName);
   }
   

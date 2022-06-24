@@ -57,11 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
 				.authorizeRequests().antMatchers("/logovanje/podaci").permitAll() //svi imaju pristup logovanju
-				.antMatchers("/").permitAll()
 				.antMatchers("/sbnz-stomp-endpoint/**").permitAll()
-				.antMatchers("/korisnici/**").permitAll()
-//				.antMatchers("/korisnici/dodaj").hasAuthority("ADMIN")
-//				.antMatchers("/chef/get").hasAuthority("ROLE_CHEF")
+				.antMatchers("/**").permitAll()
 			.anyRequest().authenticated().and()
 			.cors().and()
 			.addFilterBefore(new TokenAuthenticationFilter(tokenUtils, customUserDetailsService), BasicAuthenticationFilter.class);

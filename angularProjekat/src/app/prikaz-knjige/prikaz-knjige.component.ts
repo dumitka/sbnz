@@ -11,6 +11,7 @@ import { LoginService } from '../logovanje/login.service';
 })
 export class PrikazKnjigeComponent implements OnInit {
 
+  korisnik: String = "";
   knjiga: any;
   pisci: String = "";
   zanrovi:String = "";
@@ -20,18 +21,18 @@ export class PrikazKnjigeComponent implements OnInit {
   constructor(private ruter: Router, private knjigeService: KnjigeService, 
       private snackBar: MatSnackBar, private loginService: LoginService,) {
     this.knjiga = history.state.knjiga;
+    this.korisnik = this.loginService.getTokenData()?.username;
     this.inicijalizacija();
    }
 
   inicijalizacija() {
     this.pisci = "";
     this.zanrovi = "";
-    let korisnik = this.loginService.getTokenData()?.username;
     for (let i = 0; i < this.knjiga.pisci.length; i++)
       this.pisci += i == this.knjiga.pisci.length - 1 ? this.knjiga.pisci[i] : this.knjiga.pisci[i] + ", ";
     for (let i = 0; i < this.knjiga.zanrovi.length; i++)
       this.zanrovi += i == this.knjiga.zanrovi.length - 1 ? this.knjiga.zanrovi[i] : this.knjiga.zanrovi[i] + ", ";
-    this.knjigeService.preporuka(korisnik, this.knjiga.isbn).subscribe(response => { this.knjigeZaPrikaz = response; this.prikaziKnjige(); });
+    this.knjigeService.preporuka(this.korisnik, this.knjiga.isbn).subscribe(response => { this.knjigeZaPrikaz = response; this.prikaziKnjige(); });
   }
 
   ngOnInit(): void {
@@ -41,7 +42,6 @@ export class PrikazKnjigeComponent implements OnInit {
     this.ruter.navigate(['/Profil']);
   }
 
-  
   prikaziKnjige() {
     if (this.knjigeZaPrikaz.length == 0) {
       this.ispisPoruke();
@@ -82,7 +82,7 @@ export class PrikazKnjigeComponent implements OnInit {
       let div3 = document.createElement("div");
       div3.className = "mat-card-content";
       let i = document.createElement("i");
-      i.setAttribute("class", "sayings");
+      i.setAttribute("class", "pisci");
       let zaPisce = "";
       for (let i = 0; i < knjiga.pisci.length; i++) {
         zaPisce += i == knjiga.pisci.length - 1 ? knjiga.pisci[i] : knjiga.pisci[i] + " ,";

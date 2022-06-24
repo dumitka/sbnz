@@ -5,20 +5,20 @@
     <br>
   
     <div class="card_div">
-      <mat-card class="server_profile_card">
-        <img mat-card-lg-image name="profile_picture" class="profile_picture" src="../../assets/profil.png" >
+      <mat-card class="admin_profil_card">
+        <img mat-card-lg-image name="slika" class="slika" src="../../assets/profil.png" >
           
           <mat-card-content>
-            <div class="server_data">
+            <div class="admin">
               <span>{{ime}}</span>
               <span>&nbsp;</span>
               <span>{{prezime}}</span>
             </div>
 
             <div class="options">
-              <button mat-raised-button class="option_button" id="izmena" (click) = "izmena()">IZMENA PODATAKA</button>
-              <button mat-raised-button class="option_button" id="dodaj_kor" (click) = "dodajKorisnika()">DODAVANJE KORISNIKA</button>
-              <button mat-raised-button class="option_button" id="dodaj_knj" (click) = "dodajKnjigu()">DODAVANJE KNJIGA</button>
+              <button mat-raised-button class="dugmici" id="izmena" (click) = "izmena()">IZMENA PODATAKA</button>
+              <button mat-raised-button class="dugmici" id="dodaj_kor" (click) = "dodajKorisnika()">DODAVANJE KORISNIKA</button>
+              <button mat-raised-button class="dugmici" id="dodaj_knj" (click) = "dodajKnjigu()">DODAVANJE KNJIGA</button>
             </div>
           </mat-card-content>
   

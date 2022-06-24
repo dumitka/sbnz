@@ -2,39 +2,6 @@ body {
     background-color: #f96a6a;
 }
 
-h1 { 
-    text-align: center;
-    color: whitesmoke;
-    text-transform: uppercase;
-    padding: 1px;
-    font-family: 'Raleway', cursive;
-    font-weight: 100;
-    position: relative;
-    background: linear-gradient(to right, #f96a6a, whitesmoke, #f96a6a);
-}
-
-h1::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -50px;
-    width: 600px;
-    margin-left: -300px;
-    margin-top: -220px;
-    height: 600px;
-    background: radial-gradient(50% 50%, ellipse closest-side, #444, #f96a6a);
-    z-index: -1;
-}
-
-h1 a {
-    background: #f96a6a;
-    display: block;
-    padding: 20px;
-    text-decoration: none;
-    letter-spacing: 30px;
-    color: whitesmoke;
-}
-
 .login-card {
     display: block;
     margin-left: auto;
@@ -42,20 +9,20 @@ h1 a {
     width: 35%;
 }
 
-mat-form-field{
+mat-form-field {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 300px;
 }
 
-mat-card-actions{
+mat-card-actions {
     margin-left: 180px;
     color: #f96a6a; 
     font-family: 'Trocchi', serif; 
 }
   
-.option_button{
+.dugmici {
     background-color: #f96a6a;
     text-align: center;
     color: whitesmoke; 
@@ -63,8 +30,8 @@ mat-card-actions{
     font-size: 20px;
   }
 
-  .picture{
+.slika {
     display: block;
     margin-left: auto;
     margin-right: auto;
-  }
+}

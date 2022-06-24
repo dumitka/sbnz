@@ -1,22 +1,21 @@
-
 body {
     background-color: #f96a6a;
 }
   
-.server_profile_card {
+.korisnik_profil_card {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
 }
 
-.profile_picture{
+.slika {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.server_data{
+.korisnik {
     color: #f96a6a; 
     font-family: 'Trocchi', serif; 
     font-size: 30px; 
@@ -25,13 +24,13 @@ body {
     text-align: center;
 }
 
-mat-card-actions{
+mat-card-actions {
     margin-left: 450px;
     color: #f96a6a; 
     font-family: 'Trocchi', serif; 
 }
 
-.option_button{
+.dugmici {
     margin-top: 25px;
 
     display: block;

@@ -4,7 +4,7 @@
         <mat-form-field style="width:80%;" appearance="legacy">
             <mat-label for="tekst">TEKST</mat-label>
             <input type="text" class="form-control" formControlName="tekst"  matInput>
-            <mat-error *ngIf = "requiredError('tekst', 'required')">Potrebno je uneti tekst za pretragu!</mat-error>
+            <mat-error *ngIf = "greska('tekst', 'required')">Potrebno je uneti tekst za pretragu!</mat-error>
             <mat-icon matSuffix>search</mat-icon>
             <mat-hint></mat-hint>
         </mat-form-field>
@@ -12,7 +12,7 @@
         <mat-form-field style="width:30%;" appearance="legacy">
             <mat-label for="broj">PRIKAŽI</mat-label>
             <input type="number" class="form-control" formControlName="broj"  matInput>
-            <mat-error *ngIf = "requiredError('broj', 'required') || minError('min')">Potrebno je uneti broj knjiga za prikaz veći od 1!</mat-error>
+            <mat-error *ngIf = "greska('broj', 'required') || greska('broj', 'min')">Potrebno je uneti broj knjiga za prikaz veći od 1!</mat-error>
             <mat-icon matSuffix>search</mat-icon>
             <mat-hint></mat-hint>
         </mat-form-field>

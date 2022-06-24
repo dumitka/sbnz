@@ -1,29 +1,28 @@
-
 body {
     background-color: #f96a6a; ;
 }
   
-.server_profile_card {
+.podaci_card {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 30%;
 }
 
-mat-form-field{
+mat-form-field {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 300px;
 }
 
-.profile_picture{
+.slika {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.server_data{
+.podaci {
     color: #f96a6a; 
     font-family: 'Trocchi', serif; 
     font-size: 30px; 
@@ -32,25 +31,8 @@ mat-form-field{
     text-align: center;
 }
 
-mat-card-actions{
+mat-card-actions {
     margin-left: 250px;
     color: #f96a6a; 
     font-family: 'Trocchi', serif; 
-}
-
-.option_button{
-    margin-top: 25px;
-
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-    background-color: #f96a6a; 
-
-    width: 300px;
-
-    text-align: center;
-    color: whitesmoke; 
-    font-family: 'Trocchi', serif;
-    font-size: 20px;
 }

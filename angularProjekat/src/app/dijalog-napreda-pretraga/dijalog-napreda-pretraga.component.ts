@@ -18,12 +18,8 @@ export class DijalogNapredaPretragaComponent implements OnInit {
     });
   }
 
-  public requiredError = (elem: string, errorName: string) =>{
+  public greska = (elem: string, errorName: string) =>{
     return this.pretraga.controls[elem].hasError(errorName);
-  }
-  
-  public minError = (errorName: string) =>{
-    return this.pretraga.controls['broj'].hasError(errorName);
   }
   
   pretrazi(): void {

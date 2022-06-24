@@ -47,7 +47,6 @@ import { PrikazKnjigeComponent } from './prikaz-knjige/prikaz-knjige.component';
     ReactiveFormsModule,
     HttpClientModule,
     AngularMaterialModule,
-
     
     RouterModule.forRoot([
       { path: '', redirectTo: 'Login', pathMatch: 'full' },

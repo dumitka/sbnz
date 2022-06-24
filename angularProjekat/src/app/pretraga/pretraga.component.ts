@@ -70,7 +70,7 @@ export class PretragaComponent implements OnInit {
       let div3 = document.createElement("div");
       div3.className = "mat-card-content";
       let i = document.createElement("i");
-      i.setAttribute("class", "sayings");
+      i.setAttribute("class", "pisci");
       let zaPisce = "";
       for (let i = 0; i < knjiga.pisci.length; i++) {
         zaPisce += i == knjiga.pisci.length - 1 ? knjiga.pisci[i] : knjiga.pisci[i] + ", ";

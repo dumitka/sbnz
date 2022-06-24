@@ -5,20 +5,20 @@
     <br>
   
     <div class="card_div">
-      <mat-card class="server_profile_card">
-        <img mat-card-lg-image name="profile_picture" class="profile_picture" src="../../assets/profil.png" >
+      <mat-card class="korisnik_profil_card">
+        <img mat-card-lg-image name="slika" class="slika" src="../../assets/profil.png" >
           
           <mat-card-content>
-            <div class="server_data">
+            <div class="korisnik">
               <span>{{ime}}</span>
               <span>&nbsp;</span>
               <span>{{prezime}}</span>
             </div>
 
             <div class="options">
-              <button mat-raised-button class="option_button" id="izmena" (click) = "izmena()">IZMENA PODATAKA</button>
-              <button mat-raised-button class="option_button" id="pretraga" (click) = "pretraga()">PRETRAGA</button>
-              <button mat-raised-button class="option_button" id="napredna_pretraga" (click) = "naprednaPretraga()">NAPREDNA PRETRAGA</button>
+              <button mat-raised-button class="dugmici" id="izmena" (click) = "izmena()">IZMENA PODATAKA</button>
+              <button mat-raised-button class="dugmici" id="pretraga" (click) = "pretraga()">PRETRAGA</button>
+              <button mat-raised-button class="dugmici" id="napredna_pretraga" (click) = "naprednaPretraga()">NAPREDNA PRETRAGA</button>
             </div>
           </mat-card-content>
   

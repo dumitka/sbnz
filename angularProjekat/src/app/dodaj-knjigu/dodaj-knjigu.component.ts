@@ -11,14 +11,14 @@ import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snac
 })
 export class DodajKnjiguComponent implements OnInit {
 
-  loginForm: any = null;
+  knjigaForm: any = null;
   RESPONSE_OK: number = 0;
   RESPONSE_ERROR: number = -1;
   verticalPosition: MatSnackBarVerticalPosition = "top";
 
   constructor(private fb: FormBuilder, private knjigeServis: KnjigeService, private ruter: Router, 
       private snackBar: MatSnackBar, ) {
-    this.loginForm = this.fb.group({
+    this.knjigaForm = this.fb.group({
       isbn: ['', Validators.required],
       naziv: ['', Validators.required],
       izdavackaKuca: ['', Validators.required],
@@ -31,30 +31,30 @@ export class DodajKnjiguComponent implements OnInit {
   }
 
   dodaj() {
-    var listaPisaca = this.loginForm.getRawValue().pisci.split(';');
-    var listaZanrova = this.loginForm.getRawValue().zanrovi.split(';');
+    var listaPisaca = this.knjigaForm.getRawValue().pisci.split(';');
+    var listaZanrova = this.knjigaForm.getRawValue().zanrovi.split(';');
     var knjiga = {
-      'isbn': this.loginForm.getRawValue().isbn, 
-      'naziv': this.loginForm.getRawValue().naziv, 
+      'isbn': this.knjigaForm.getRawValue().isbn, 
+      'naziv': this.knjigaForm.getRawValue().naziv, 
       'pisci': listaPisaca, 
       'zanrovi': listaZanrova, 
-      'izdavackaKuca': this.loginForm.getRawValue().izdavackaKuca }
+      'izdavackaKuca': this.knjigaForm.getRawValue().izdavackaKuca }
     this.knjigeServis.dodajKnjigu(knjiga)
       .subscribe((data:any) => {
-        this.openSnackBar("Uspešno ste dodali knjigu " + knjiga.naziv + " :) ", this.RESPONSE_OK);
+        this.ispisPoruke("Uspešno ste dodali knjigu " + knjiga.naziv + " :) ", this.RESPONSE_OK);
         this.ruter.navigate(['/ProfilAdmin']);
       },
       error => {
         if (error.status === 406) {
-          this.openSnackBar("ISBN " + knjiga.isbn + " već postoji u sistemu :)", this.RESPONSE_ERROR);
+          this.ispisPoruke("ISBN " + knjiga.isbn + " već postoji u sistemu :)", this.RESPONSE_ERROR);
         }});
   }
 
-  public hasError = (controlName: string, errorName: string) => {
-    return this.loginForm.controls[controlName].hasError(errorName);
+  public postojiGreska = (controlName: string, errorName: string) => {
+    return this.knjigaForm.controls[controlName].hasError(errorName);
   }
   
-  openSnackBar(msg: string, responseCode: number) {
+  ispisPoruke(msg: string, responseCode: number) {
     this.snackBar.open(msg, "x", {
       duration: responseCode === this.RESPONSE_OK ? 3000 : 20000,
       verticalPosition: this.verticalPosition,

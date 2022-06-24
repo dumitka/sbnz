@@ -4,7 +4,7 @@
         <mat-form-field appearance="legacy">
             <mat-label for="tekst">TEKST</mat-label>
             <input type="text" class="form-control" formControlName="tekst"  matInput>
-            <mat-error *ngIf = "requiredError('required')">Potrebno je uneti tekst za pretragu!</mat-error>
+            <mat-error *ngIf = "postojiGreska('required')">Potrebno je uneti tekst za pretragu!</mat-error>
             <mat-icon matSuffix>search</mat-icon>
             <mat-hint></mat-hint>
         </mat-form-field>

@@ -38,17 +38,17 @@ export class IzmenaPodatakaComponent implements OnInit {
     this.korisnik.prezime = this.loginForm.getRawValue().prezime;
     this.korisniciServis.setInfo(this.korisnik)
       .subscribe((data:any) => {
-        this.openSnackBar("Uspešno ste izmenili podatke :)");
+        this.ispisPoruke("Uspešno ste izmenili podatke :)");
         if (data.korisnikoIme == "dumit") this.ruter.navigate(['/ProfilAdmin']);
         else this.ruter.navigate(['/Profil']);
       });
   }
 
-  public hasError = (controlName: string, errorName: string) => {
+  public postojiGreska = (controlName: string, errorName: string) => {
     return this.loginForm.controls[controlName].hasError(errorName);
   }
   
-  openSnackBar(msg: string) {
+  ispisPoruke(msg: string) {
     this.snackBar.open(msg, "x", {
       duration: 3000,
       verticalPosition: this.verticalPosition,

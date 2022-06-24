@@ -5,11 +5,11 @@
     <br>
   
     <div class="card_div">
-      <mat-card class="server_profile_card">
-        <img mat-card-lg-image name="profile_picture" class="profile_picture" src="../../assets/profil.png" >
+      <mat-card class="podaci_card">
+        <img mat-card-lg-image name="slika" class="slika" src="../../assets/profil.png" >
           
           <mat-card-content>
-            <div class="server_data">
+            <div class="podaci">
               <span>{{korisnik?.korisnickoIme}}</span>
             </div>
 
@@ -19,7 +19,7 @@
                         <mat-form-field appearance="legacy">
                             <mat-label for="ime">IME</mat-label>
                             <input type="text" class="form-control" formControlName="ime" id="imeKor" matInput>
-                            <mat-error *ngIf="hasError('ime', 'required')">Potrebno je uneti ime!</mat-error>
+                            <mat-error *ngIf="postojiGreska('ime', 'required')">Potrebno je uneti ime!</mat-error>
                             <mat-icon matSuffix>person_outline</mat-icon>
                         </mat-form-field>
                         <br>
@@ -27,7 +27,7 @@
                         <mat-form-field appearance="legacy">
                             <mat-label for="prezime">PREZIME</mat-label>
                             <input type="text" class="form-control" formControlName="prezime" id="prez" matInput>
-                            <mat-error *ngIf="hasError('prezime', 'required')">Potrebno je uneti prezime!</mat-error>
+                            <mat-error *ngIf="postojiGreska('prezime', 'required')">Potrebno je uneti prezime!</mat-error>
                             <mat-icon matSuffix>person_outline</mat-icon>
                         </mat-form-field>
                     </form>

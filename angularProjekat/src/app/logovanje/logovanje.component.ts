@@ -30,7 +30,7 @@ export class LogovanjeComponent implements OnInit {
     }
   }
 
-  public hasError = (controlName: string, errorName: string) => {
+  public postojiGreska = (controlName: string, errorName: string) => {
     return this.loginForm.controls[controlName].hasError(errorName);
   }
 
@@ -38,7 +38,7 @@ export class LogovanjeComponent implements OnInit {
     this.loginService.login(this.loginForm.getRawValue())
       .subscribe(
         data => {
-          this.openSnackBar("Uspešno ste ulogovani. Dobrodošli! :)", this.RESPONSE_OK);
+          this.ispisPoruke("Uspešno ste ulogovani. Dobrodošli! :)", this.RESPONSE_OK);
           if (this.loginService.getTokenData()?.role === "ADMIN") {
             this.router.navigate(['/ProfilAdmin']);
           } else if (this.loginService.getTokenData()?.role === "KORISNIK") {
@@ -47,12 +47,12 @@ export class LogovanjeComponent implements OnInit {
         },
         error => {
           if (error.status === 404) {
-            this.openSnackBar("Pogrešno korisničko ime ili lozinka :)", this.RESPONSE_OK);
+            this.ispisPoruke("Pogrešno korisničko ime ili lozinka :)", this.RESPONSE_ERROR);
           }
         });
   }
 
-  openSnackBar(msg: string, responseCode: number) {
+  ispisPoruke(msg: string, responseCode: number) {
     this.snackBar.open(msg, "x", {
       duration: responseCode === this.RESPONSE_OK ? 3000 : 20000,
       verticalPosition: this.verticalPosition,

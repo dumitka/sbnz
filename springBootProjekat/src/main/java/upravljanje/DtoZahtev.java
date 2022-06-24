@@ -2,7 +2,6 @@ package upravljanje;
 
 import lombok.*;
 
-//dto za logovanje
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

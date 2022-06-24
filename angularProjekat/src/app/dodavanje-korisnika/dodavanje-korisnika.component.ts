@@ -11,14 +11,14 @@ import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snac
 })
 export class DodavanjeKorisnikaComponent implements OnInit {
 
-  loginForm: any = null;
+  korisnikForm: any = null;
   RESPONSE_OK: number = 0;
   RESPONSE_ERROR: number = -1;
   verticalPosition: MatSnackBarVerticalPosition = "top";
 
   constructor(private fb: FormBuilder, private korisniciServis: KorisniciService, private ruter: Router, 
       private snackBar: MatSnackBar, ) {
-    this.loginForm = this.fb.group({
+    this.korisnikForm = this.fb.group({
       ime: ['', Validators.required],
       prezime: ['', Validators.required],
       korIme: ['', Validators.required],
@@ -31,26 +31,26 @@ export class DodavanjeKorisnikaComponent implements OnInit {
 
   dodaj() {
     var korisnik = {
-      'korisnickoIme': this.loginForm.getRawValue().korIme, 
-      'lozinka': this.loginForm.getRawValue().loz, 
-      'ime': this.loginForm.getRawValue().ime, 
-      'prezime': this.loginForm.getRawValue().prezime }
+      'korisnickoIme': this.korisnikForm.getRawValue().korIme, 
+      'lozinka': this.korisnikForm.getRawValue().loz, 
+      'ime': this.korisnikForm.getRawValue().ime, 
+      'prezime': this.korisnikForm.getRawValue().prezime }
     this.korisniciServis.dodajKorisnika(korisnik)
       .subscribe((data:any) => {
-        this.openSnackBar("Uspešno ste dodali korisnika " + korisnik.korisnickoIme + " :) ", this.RESPONSE_OK);
+        this.ispisPoruke("Uspešno ste dodali korisnika " + korisnik.korisnickoIme + " :) ", this.RESPONSE_OK);
         this.ruter.navigate(['/ProfilAdmin']);
       },
       error => {
         if (error.status === 406) {
-          this.openSnackBar("Korisničko ime " + korisnik.korisnickoIme + " već postoji u sistemu :)", this.RESPONSE_ERROR);
+          this.ispisPoruke("Korisničko ime " + korisnik.korisnickoIme + " već postoji u sistemu :)", this.RESPONSE_ERROR);
         }});
   }
 
-  public hasError = (controlName: string, errorName: string) => {
-    return this.loginForm.controls[controlName].hasError(errorName);
+  public postojiGreska = (controlName: string, errorName: string) => {
+    return this.korisnikForm.controls[controlName].hasError(errorName);
   }
   
-  openSnackBar(msg: string, responseCode: number) {
+  ispisPoruke(msg: string, responseCode: number) {
     this.snackBar.open(msg, "x", {
       duration: responseCode === this.RESPONSE_OK ? 3000 : 20000,
       verticalPosition: this.verticalPosition,
