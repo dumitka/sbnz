@@ -1,0 +1,38 @@
+body {
+    background-color: #f96a6a; ;
+}
+  
+.podaci_card {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+mat-form-field {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+.slika {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.podaci {
+    color: #f96a6a; 
+    font-family: 'Trocchi', serif; 
+    font-size: 30px; 
+    font-weight: normal; 
+    line-height: 48px;
+    text-align: center;
+}
+
+mat-card-actions {
+    margin-left: 250px;
+    color: #f96a6a; 
+    font-family: 'Trocchi', serif; 
+}

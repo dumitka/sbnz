@@ -13,7 +13,7 @@ public class ServisKorisnika {
 
 	public List<Korisnik> nadjiSve() { return this.repozitorijumKorisnika.findAll(); }
 	
-	public Korisnik sacuvajKnjigu(Korisnik k) { return this.repozitorijumKorisnika.save(k); }
+	public Korisnik sacuvajKorisnika(Korisnik k) { return this.repozitorijumKorisnika.save(k); }
 	
 	public Korisnik nadjiPoKorisnickomImenu(String korIme) { return this.repozitorijumKorisnika.findOneByKorisnickoIme(korIme); }
 	

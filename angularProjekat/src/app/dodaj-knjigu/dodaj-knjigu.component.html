@@ -1,0 +1,70 @@
+<body>
+    <br>
+    <br>
+  
+    <div class="card_div">
+      <mat-card class="knjiga_card">
+          <mat-card-content>
+            <div class="knjiga">
+              <span>Dodavanje knjige</span>
+            </div>
+
+            <mat-card-content>
+                <div class="main-div">
+                    <form [formGroup]="knjigaForm" class="login-form">
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="isbn">ISBN</mat-label>
+                            <input type="text" class="form-control" formControlName="isbn" id="isbn" matInput>
+                            <mat-error *ngIf="postojiGreska('isbn', 'required')">Potrebno je uneti isbn!</mat-error>
+                            <mat-icon matSuffix>view_day</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <br>
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="naziv">NAZIV</mat-label>
+                            <input type="text" class="form-control" formControlName="naziv" id="naziv" matInput>
+                            <mat-error *ngIf="postojiGreska('naziv', 'required')">Potrebno je uneti naziv!</mat-error>
+                            <mat-icon matSuffix>view_day</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <br>
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="pisci">PISCI</mat-label>
+                            <input type="text" class="form-control" formControlName="pisci" id="pisci" matInput>
+                            <mat-error *ngIf="postojiGreska('pisci', 'required')">Potrebno je uneti pisce (razdvojite sa ';')!</mat-error>
+                            <mat-icon matSuffix>view_day</mat-icon>
+                            <mat-hint>(razdvojite sa ';')</mat-hint>
+                        </mat-form-field>
+                        <br>
+                        <br>
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="izdavackaKuca">IZDAVAČKA KUĆA</mat-label>
+                            <input type="text" class="form-control" formControlName="izdavackaKuca" id="izdavackaKuca" matInput>
+                            <mat-error *ngIf="postojiGreska('izdavackaKuca', 'required')">Potrebno je uneti izdavačku kuću!</mat-error>
+                            <mat-icon matSuffix>view_day</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <br>
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="zanrovi">ŽANROVI</mat-label>
+                            <input type="text" class="form-control" formControlName="zanrovi" id="zanrovi" matInput>
+                            <mat-error *ngIf="postojiGreska('zanrovi', 'required')">Potrebno je uneti žanrove (razdvojite sa ';')!</mat-error>
+                            <mat-icon matSuffix>view_day</mat-icon>
+                            <mat-hint>(razdvojite sa ';')</mat-hint>
+                        </mat-form-field>
+                    </form>
+                </div>
+            </mat-card-content>
+          </mat-card-content>
+  
+          <mat-card-actions>
+            <button mat-button (click) = "dodaj()" [disabled]="knjigaForm.invalid">DODAJ</button>
+          </mat-card-actions>
+      </mat-card>
+    </div>
+    
+    </body>
+  
+  
+  
+  

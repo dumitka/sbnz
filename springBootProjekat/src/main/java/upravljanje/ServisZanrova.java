@@ -1,6 +1,7 @@
 package upravljanje;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +14,7 @@ public class ServisZanrova {
 	public List<Zanr> nadjiSve() { return this.repozitorijumZanrova.findAll(); }
 	
 	public Zanr nadjiPoNazivu(String naziv) { return this.repozitorijumZanrova.findOneByNaziv(naziv); }
+	
+	public Zanr sacuvajZanr(Zanr z) { return this.repozitorijumZanrova.save(z); }
 	
 }

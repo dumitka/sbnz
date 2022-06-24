@@ -1,0 +1,16 @@
+<body> 
+    <h1 mat-dialog-title>Unesite tekst za pretragu:</h1>
+    <form class="form" [formGroup] = "pretraga">
+        <mat-form-field appearance="legacy">
+            <mat-label for="tekst">TEKST</mat-label>
+            <input type="text" class="form-control" formControlName="tekst"  matInput>
+            <mat-error *ngIf = "postojiGreska('required')">Potrebno je uneti tekst za pretragu!</mat-error>
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-hint></mat-hint>
+        </mat-form-field>
+        <br/>
+        <div mat-dialog-actions>
+            <button mat-raised-button [disabled] = "pretraga.invalid" (click)="pretrazi()">PRETRAŽI</button>
+        </div>
+    </form>
+</body>

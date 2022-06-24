@@ -1,0 +1,46 @@
+<body>
+    <h1><a (click) = "nazadNaProfil()">VAŠ PROFIL</a></h1>
+  
+    <br/>
+    <div class="card_div">
+        <mat-card class="knjiga_card">
+          <img mat-card-lg-image name="slika" class="slika" src="../../assets/knjiga.avif" >
+            
+            <mat-card-content>
+              <div class="knjiga_naslov">
+                <span>{{knjiga.naziv}}</span>
+              </div>
+              
+              <div class="knjiga_podaci">
+                <table>
+                    <tr>
+                        <td>Pisci:</td>
+                        <td>{{pisci}}</td>
+                    </tr>
+                    <tr>
+                        <td>ISBN:</td>
+                        <td>{{knjiga.isbn}}</td>
+                    </tr>
+                    <tr>
+                        <td>Izdavačka kuća:&nbsp;&nbsp;&nbsp;</td>
+                        <td>{{knjiga.izdavackaKuca}}</td>
+                    </tr>
+                    <tr>
+                        <td>Žanrovi:</td>
+                        <td>{{zanrovi}}</td>
+                    </tr>
+                </table>
+              </div>
+  
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <br/>
+    <br/>
+    <div class="preporuka">
+      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>Preporučene knjige:</span>
+    </div>
+    <section id='divZaKnjige'></section>
+</body>

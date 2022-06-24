@@ -1,0 +1,12 @@
+button {
+    margin-top: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f96a6a; 
+    width: 350px;
+    text-align: center;
+    color: whitesmoke; 
+    font-family: 'Trocchi', serif;
+    font-size: 20px;
+}

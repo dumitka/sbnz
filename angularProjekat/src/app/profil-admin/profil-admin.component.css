@@ -1,0 +1,48 @@
+body {
+    background-color: #f96a6a; ;
+}
+  
+.admin_profil_card {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.slika {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin {
+    color: #f96a6a; 
+    font-family: 'Trocchi', serif; 
+    font-size: 30px; 
+    font-weight: normal; 
+    line-height: 48px;
+    text-align: center;
+}
+
+mat-card-actions {
+    margin-left: 450px;
+    color: #f96a6a; 
+    font-family: 'Trocchi', serif; 
+}
+
+.dugmici {
+    margin-top: 25px;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: #f96a6a; 
+
+    width: 300px;
+
+    text-align: center;
+    color: whitesmoke; 
+    font-family: 'Trocchi', serif;
+    font-size: 20px;
+}

@@ -1,12 +1,22 @@
 package upravljanje;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Builder
 @Getter
@@ -16,8 +26,13 @@ import lombok.*;
 @EqualsAndHashCode
 @Entity
 @Table(name = "korisnici")
-public class Korisnik {
+public class Korisnik implements UserDetails {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -35,7 +50,7 @@ public class Korisnik {
 	private String prezime;
 	
 	@ManyToOne
-	@JoinColumn(name = "uloga_id")
+	@JoinColumn(name = "uloga_id", nullable = false)
 	private Uloga uloga;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -60,4 +75,40 @@ public class Korisnik {
 				+ "], lajkovaniZanrovi=[" + sb2.toString() + "]]";
 	}
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+    	ArrayList<Uloga> uloge = new ArrayList<>();
+    	uloge.add(this.uloga);
+        return uloge;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.korisnickoIme;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+	@Override
+	public String getPassword() {
+		return this.lozinka;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

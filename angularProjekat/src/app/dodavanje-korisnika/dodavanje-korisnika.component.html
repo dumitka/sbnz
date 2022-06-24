@@ -1,0 +1,62 @@
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+  
+    <div class="card_div">
+      <mat-card class="dodaj_card">
+          <mat-card-content>
+            <div class="dodavanje">
+              <span>Dodavanje korisnika</span>
+            </div>
+
+            <mat-card-content>
+                <div class="main-div">
+                    <form [formGroup]="korisnikForm" class="login-form">
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="ime">IME</mat-label>
+                            <input type="text" class="form-control" formControlName="ime" id="imeKor" matInput>
+                            <mat-error *ngIf="postojiGreska('ime', 'required')">Potrebno je uneti ime!</mat-error>
+                            <mat-icon matSuffix>person_outline</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <br>
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="prezime">PREZIME</mat-label>
+                            <input type="text" class="form-control" formControlName="prezime" id="prez" matInput>
+                            <mat-error *ngIf="postojiGreska('prezime', 'required')">Potrebno je uneti prezime!</mat-error>
+                            <mat-icon matSuffix>person_outline</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <br>
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="korIme">KORISNIČKO IME</mat-label>
+                            <input type="text" class="form-control" formControlName="korIme" id="korIme" matInput>
+                            <mat-error *ngIf="postojiGreska('korIme', 'required')">Potrebno je uneti prezime!</mat-error>
+                            <mat-icon matSuffix>person_outline</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <br>
+                        <mat-form-field appearance="legacy">
+                            <mat-label for="loz">LOZINKA</mat-label>
+                            <input type="password" class="form-control" formControlName="loz" id="loz" matInput>
+                            <mat-error *ngIf="postojiGreska('loz', 'required')">Potrebno je uneti prezime!</mat-error>
+                            <mat-icon matSuffix>lock_open</mat-icon>
+                        </mat-form-field>
+                    </form>
+                </div>
+            </mat-card-content>
+          </mat-card-content>
+  
+          <mat-card-actions>
+            <button mat-button (click) = "dodaj()" [disabled]="korisnikForm.invalid">DODAJ</button>
+          </mat-card-actions>
+      </mat-card>
+    </div>
+    
+    </body>
+  
+  
+  
+  
