@@ -1,0 +1,115 @@
+
+body {
+    background-color: #f96a6a; 
+    height: 1000px;
+}
+  
+.server_profile_card {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+}
+
+.profile_picture{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.server_data{
+    color: #f96a6a; 
+    font-family: 'Trocchi', serif; 
+    font-size: 30px; 
+    font-weight: normal; 
+    line-height: 48px;
+    text-align: center;
+}
+
+.book_data{
+    color: #f96a6a; 
+    font-family: 'Trocchi', serif; 
+    font-size: 20px; 
+    font-weight: normal; 
+    line-height: 25px;
+    text-align: left;
+}
+
+.preporuka{
+    color: whitesmoke; 
+    font-family: 'Trocchi', serif; 
+    font-size: 20px; 
+    font-weight: normal; 
+    line-height: 25px;
+    text-align: left;
+}
+
+h1 { 
+    text-align: center;
+    color: whitesmoke;
+    text-transform: uppercase;
+    padding: 1px;
+    font-family: 'Raleway', cursive;
+    font-weight: 100;
+    position: relative;
+    background: linear-gradient(to right, #6d918b, whitesmoke, #6d918b);
+}
+
+h1::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    width: 600px;
+    margin-left: -300px;
+    margin-top: -220px;
+    height: 600px;
+    background: radial-gradient(50% 50%, ellipse closest-side, #444, #6d918b);
+    z-index: -1;
+}
+
+h1 a {
+    background: #f96a6a;
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    letter-spacing: 30px;
+    color: whitesmoke;
+}
+
+mat-form-field {
+    padding: 10px;
+    left: 4%;
+    color: #f96a6a;
+    font-family: 'Raleway', cursive;
+    background-color: whitesmoke;
+}
+.mat-card-title {
+    display: block;
+    color: #f96a6a; 
+    font-family: 'Trocchi', serif; 
+    font-size: 20px; 
+    font-weight: normal; 
+    line-height: 48px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sayings {
+    text-align: center;
+    color: #f96a6a; 
+    font-family: 'Trocchi', serif; 
+    font-size: 15px; 
+    font-weight: normal; 
+    line-height: 48px;
+}
+
+.option_button {
+    background-color: #f96a6a; 
+    width: 100px;
+    text-align: center;
+    color: whitesmoke; 
+    font-family: 'Trocchi', serif;
+    font-size: 20px;
+    margin-left: 50px;
+}

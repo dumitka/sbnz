@@ -2,25 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { KnjigeService } from './knjige.service';
 import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { LoginService } from '../logovanje/login.service';
 
 @Component({
-  selector: 'app-pretraga',
-  templateUrl: './pretraga.component.html',
-  styleUrls: ['./pretraga.component.css']
+  selector: 'app-prikaz-knjige',
+  templateUrl: './prikaz-knjige.component.html',
+  styleUrls: ['./prikaz-knjige.component.css']
 })
-export class PretragaComponent implements OnInit {
+export class PrikazKnjigeComponent implements OnInit {
 
+  knjiga: any;
+  pisci: String = "";
+  zanrovi:String = "";
   knjigeZaPrikaz: any;
   verticalPosition: MatSnackBarVerticalPosition = "top";
 
-  constructor( private ruter: Router, private knjigeService: KnjigeService, private snackBar: MatSnackBar, ) {
-    this.knjigeZaPrikaz = [];
-    if (history.state.vrsta == 1) 
-      knjigeService.pretraga(history.state.podaci).subscribe(response => { this.knjigeZaPrikaz = response; this.prikaziKnjige(); });
-    else if (history.state.vrsta == 2) 
-      knjigeService.generisiTemplejt(history.state.podaci).subscribe(response => { this.knjigeZaPrikaz = response; this.prikaziKnjige(); });
-    else
-      knjigeService.staraPretraga().subscribe(response => { this.knjigeZaPrikaz = response; this.prikaziKnjige(); });
+  constructor(private ruter: Router, private knjigeService: KnjigeService, 
+      private snackBar: MatSnackBar, private loginService: LoginService,) {
+    this.knjiga = history.state.knjiga;
+    this.inicijalizacija();
+   }
+
+  inicijalizacija() {
+    this.pisci = "";
+    this.zanrovi = "";
+    let korisnik = this.loginService.getTokenData()?.username;
+    for (let i = 0; i < this.knjiga.pisci.length; i++)
+      this.pisci += i == this.knjiga.pisci.length - 1 ? this.knjiga.pisci[i] : this.knjiga.pisci[i] + ", ";
+    for (let i = 0; i < this.knjiga.zanrovi.length; i++)
+      this.zanrovi += i == this.knjiga.zanrovi.length - 1 ? this.knjiga.zanrovi[i] : this.knjiga.zanrovi[i] + ", ";
+    this.knjigeService.preporuka(korisnik, this.knjiga.isbn).subscribe(response => { this.knjigeZaPrikaz = response; this.prikaziKnjige(); });
   }
 
   ngOnInit(): void {
@@ -29,6 +40,7 @@ export class PretragaComponent implements OnInit {
   nazadNaProfil() {
     this.ruter.navigate(['/Profil']);
   }
+
   
   prikaziKnjige() {
     if (this.knjigeZaPrikaz.length == 0) {
@@ -43,7 +55,7 @@ export class PretragaComponent implements OnInit {
         divZaKnjige.removeChild(divZaKnjige.lastChild);
     }
     
-    divZaKnjige.setAttribute("style", "overflow-y: scroll;height:500px;");
+    divZaKnjige.setAttribute("style", "overflow-y: scroll;height:450px;");
     let redniBr = 0;
     this.knjigeZaPrikaz.forEach((knjiga: any) => {
       let div = document.createElement("div");
@@ -73,7 +85,7 @@ export class PretragaComponent implements OnInit {
       i.setAttribute("class", "sayings");
       let zaPisce = "";
       for (let i = 0; i < knjiga.pisci.length; i++) {
-        zaPisce += i == knjiga.pisci.length - 1 ? knjiga.pisci[i] : knjiga.pisci[i] + ", ";
+        zaPisce += i == knjiga.pisci.length - 1 ? knjiga.pisci[i] : knjiga.pisci[i] + " ,";
       }
       i.appendChild(document.createTextNode(zaPisce));
       div3.appendChild(i);
@@ -92,15 +104,15 @@ export class PretragaComponent implements OnInit {
         break;
       }
     }
-    this.ruter.navigate(["/Knjiga"], {state: {'knjiga': odabranaKnjiga}});
+    this.knjiga = odabranaKnjiga;
+    this.inicijalizacija();
   }
-
+  
   ispisPoruke() {
-    this.snackBar.open("Nema pronađenih knjiga :)", "x", {
+    this.snackBar.open("Nema knjiga za preporuku :)", "x", {
       duration: 3000,
       verticalPosition: this.verticalPosition,
       panelClass: "back-green"
     });
   }
-
 }

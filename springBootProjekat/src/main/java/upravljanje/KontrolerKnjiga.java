@@ -135,4 +135,25 @@ public class KontrolerKnjiga {
     	}
         return new ResponseEntity<>(povratna, HttpStatus.OK);
     }
+    
+
+    @GetMapping(value = "/preporuka/{korIme}/{isbn}")
+	@PreAuthorize("hasAuthority('KORISNIK')")
+    public ResponseEntity<List<DtoKnjiga>> preporuka(@PathVariable String korIme, @PathVariable String isbn) {
+    	ArrayList<DtoKnjiga> povratna = new ArrayList<>();
+    	
+    	ArrayList<Knjiga> preporuka = this.servisKnjiga.preporukaKnjiga(korIme, isbn);
+    	for (Knjiga k : preporuka) {
+    		if (povratna.size() == 6) break;
+    		ArrayList<String> pisci = new ArrayList<>();
+    		String pom = new String(k.getPisci());
+    		pom = pom.replace("[", "").replace("]", "").replace("\"", "");
+    		for (String s : (Arrays.asList((pom).split(",")))) pisci.add(s);
+    		ArrayList<String> zanrovi = new ArrayList<>();
+    		for (Zanr z : k.getZanrovi()) zanrovi.add(z.getNaziv());
+    		DtoKnjiga pomocna = DtoKnjiga.builder().isbn(k.getIsbn()).izdavackaKuca(k.getIzdavackaKuca()).naziv(k.getNaziv()).pisci(pisci).zanrovi(zanrovi).build();
+    		povratna.add(pomocna);
+    	}
+    	return new ResponseEntity<>(povratna, HttpStatus.OK);
+    }
 }

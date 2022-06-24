@@ -1,7 +1,7 @@
 insert into uloge (ime) values ('ADMIN');
 insert into uloge (ime) values ('KORISNIK');
 
-insert into zanrovi (naziv) values ('naucna-fantastika');
+insert into zanrovi (naziv) values ('naučna-fantastika');
 insert into zanrovi (naziv) values ('tinejdž');
 insert into zanrovi (naziv) values ('ljubavni');
 insert into zanrovi (naziv) values ('istorijski');
@@ -9,7 +9,7 @@ insert into zanrovi (naziv) values ('klasici');
 insert into zanrovi (naziv) values ('horor');
 insert into zanrovi (naziv) values ('misterija');
 insert into zanrovi (naziv) values ('erotika');
-insert into zanrovi (naziv) values ('decije');
+insert into zanrovi (naziv) values ('dečije');
 
 insert into knjige (isbn, naziv, pisci, izdavacka_kuca) values 
 	('978-86-89565-22-5', 'Crvena kraljica', '["Viktorija Ejvjard"]', 'Urban reads');
